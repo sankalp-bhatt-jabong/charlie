@@ -14,12 +14,13 @@ import com.jabong.models.User;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/user")
 public class UserController extends AppController{
 	
 	@Autowired
 	private UserDAO userDao;
 	
-	@RequestMapping(value="/")
+	@RequestMapping(value="/home")
 	public @ResponseBody
 	List<User> home() {
 	//String home() {

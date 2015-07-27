@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jabong</groupId>
-	<artifactId>Charlie</artifactId>
-	<name>Charlie</name>
+	<artifactId>charlie</artifactId>
+	<name>charlie</name>
 	<packaging>war</packaging>
 	<version>0.1.0</version>
 
@@ -82,7 +82,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>Charlie</finalName>
+		<finalName>charlie</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -123,10 +123,15 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
-                <configuration>
+				<configuration>
 					<path>/Charlie</path>
 					<port>9966</port>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.8.v20150217</version>
 			</plugin>
 		</plugins>
 	</build>
