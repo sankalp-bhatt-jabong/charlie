@@ -44,8 +44,8 @@
         class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-    
-	<bean id="userDao" class="com.jabong.models.dao.UserDAO">
+
+	<bean id="bundleDao" class="com.jabong.models.dao.BundleDAO">
 	    <constructor-arg>
 	        <ref bean="sessionFactory" />
 	    </constructor-arg>
