@@ -9,5 +9,10 @@
 		</id>
 		<property name="name" column="name" />
 		<property name="displayName" column="display_name" />
+		<property name="description" column="description" />
+		<property name="isActive" column="is_active" />
+		<property name="fromDate" column="from_date" />
+		<property name="toDate" column="to_date" />
+		
 	</class>
 </hibernate-mapping>
