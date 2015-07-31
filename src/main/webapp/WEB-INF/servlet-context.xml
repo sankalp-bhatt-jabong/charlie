@@ -49,5 +49,10 @@
 	    <constructor-arg>
 	        <ref bean="sessionFactory" />
 	    </constructor-arg>
-	</bean>    	
+	</bean>    
+	<bean id="voucherDao" class="com.jabong.models.dao.VoucherDAO">
+	    <constructor-arg>
+	        <ref bean="sessionFactory" />
+	    </constructor-arg>
+	</bean> 	
 </beans>

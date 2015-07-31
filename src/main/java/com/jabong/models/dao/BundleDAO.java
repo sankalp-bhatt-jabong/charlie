@@ -3,7 +3,7 @@ package com.jabong.models.dao;
 import java.util.List;
 
 import com.jabong.models.Bundle;
-
+import com.jabong.json.ActiveBundles;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,12 +27,12 @@ public class BundleDAO {
 	}
 	
 	@Transactional
-	public List<Bundle> activeList() {
+	public List<ActiveBundles> activeList() {
+		//ActiveBundles activeBundleList = new ActiveBundles();
 		@SuppressWarnings("unchecked")
 		
-		List<Bundle> bundles = (List<Bundle>) sessionFactory.getCurrentSession()
-				.createCriteria(Bundle.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+		List<ActiveBundles> bundles = (List<ActiveBundles>) sessionFactory.getCurrentSession()
+				.createQuery("SELECT B.id from Bundle B where B.isActive=1").list();
 
 		return bundles;
 	}

@@ -1,6 +1,7 @@
 package com.jabong.controllers;
 
 import java.util.*;
+import com.jabong.json.ActiveBundles;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,11 +29,21 @@ public class BundleController extends AppController {
 	@Autowired
 	private BundleDAO bundleDao;
 	
-	@RequestMapping("/list")
-	public @ResponseBody List<Bundle> list() {
-		List<Bundle> bundles = bundleDao.list();
+	@RequestMapping("/activeList")
+	public @ResponseBody ActiveBundles list() {
+		ActiveBundles activeBundleList = new ActiveBundles();
+		List<ActiveBundles> bundles = bundleDao.activeList();
 		//Map<String, String[]> m = request.getParameterValues();
-		return bundles;
+		Iterator i = bundles.iterator();
+		ArrayList<Integer> listing = new ArrayList<Integer>();
+		short status=1;
+		while(i.hasNext()){
+			Integer arr=(Integer)i.next();
+			listing.add(arr.intValue());
+		}
+		activeBundleList.setData(listing);
+		activeBundleList.setStatus(status);
+		return activeBundleList;
 		//return "sdsds";
 	}
 

@@ -4,6 +4,15 @@ public class Bundle {
 	private int id;
 	private String name;
 	private String displayName;
+	private short isActive;
+
+	public short getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(short isActive) {
+		this.isActive = isActive;
+	}
 
 	public int getId() {
 		return id;
