@@ -24,5 +24,15 @@
 		<property name="defaultMessages" column="default_messages" />
 		<property name="bundleBadge" column="bundle_badge" />
 		<property name="bundleFilterText" column="bundle_filter_text" />
+
+		<set name="bundleSets" lazy="true">
+			<key column="fk_sku_bundle" />
+			<one-to-many class="BundleSet" />
+		</set>
+		
+		
 	</class>
+
+
+
 </hibernate-mapping>

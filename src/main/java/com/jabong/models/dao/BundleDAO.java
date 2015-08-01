@@ -8,6 +8,7 @@ import com.jabong.models.Bundle;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.FetchMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,7 +46,9 @@ public class BundleDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Bundle.class);
 		criteria.add(Restrictions.eq("id", bundleId));
-		Object result = criteria.list();
+		criteria.setFetchMode("bundleSets", FetchMode.JOIN);
+		criteria.setFetchMode("bundleSets.bundleSetOptions", FetchMode.JOIN);
+		Object result = criteria.uniqueResult();
 		return result;
 	}
 	

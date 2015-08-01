@@ -1,5 +1,9 @@
 package com.jabong.models;
 
+import java.util.Set;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 public class Bundle {
 	private Integer id;
 	private Integer csvCount;
@@ -19,6 +23,15 @@ public class Bundle {
 	private String defaultMessages;
 	private String bundleBadge;
 	private String bundleFilterText;
+	
+	private Set<BundleSet> bundleSets;
+	
+	public Set<BundleSet> getBundleSets() {
+		return bundleSets;
+	}
+	public void setBundleSets(Set<BundleSet> bundleSet) {
+		this.bundleSets = bundleSet;
+	}
 	public Integer getId() {
 		return id;
 	}

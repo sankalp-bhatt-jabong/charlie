@@ -4,6 +4,7 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +42,7 @@ public class BundleController extends AppController {
 	public @ResponseBody Object detail() {
 		int bundleId = Integer.valueOf(request.getParameter("id"));
 		Object bundle = bundleDao.getDetailById(bundleId);
+		
 		return bundle;
 		
 	}
