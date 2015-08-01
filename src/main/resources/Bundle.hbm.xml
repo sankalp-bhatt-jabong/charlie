@@ -7,12 +7,22 @@
 		<id name="id" column="id_sku_bundle">
 			<generator class="native" />
 		</id>
+		<property name="csvCount" column="csv_count" />
 		<property name="name" column="name" />
 		<property name="displayName" column="display_name" />
 		<property name="description" column="description" />
 		<property name="isActive" column="is_active" />
 		<property name="fromDate" column="from_date" />
 		<property name="toDate" column="to_date" />
-		
+		<property name="discountLevel" column="discount_level" />
+		<property name="actionSerialized" column="action_serialized" />
+		<property name="freebieProducts" column="freebie_products" />
+		<property name="skipBundleCalculation" column="skip_bundle_calculation" />
+		<property name="disabledPaymentMethod" column="disabled_payment_method" />
+		<property name="isCheckoutDisabled" column="is_checkout_disabled" />
+		<property name="isDefaultMessageEnabled" column="is_default_message_enabled" />
+		<property name="defaultMessages" column="default_messages" />
+		<property name="bundleBadge" column="bundle_badge" />
+		<property name="bundleFilterText" column="bundle_filter_text" />
 	</class>
 </hibernate-mapping>

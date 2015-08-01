@@ -1,17 +1,24 @@
 package com.jabong.services.response;
 
-import java.util.*;
-
-
 abstract public class BaseResponse {
 
-	public Boolean status;
+	private Boolean status;
+	private Object data;
 
-	public void setSuccessStatus() {
-		this.status = true;
+	public Boolean getStatus() {
+		return status;
 	}
-	
-	public void setFailureStatus() {
-		this.status = false;
+
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
+
 }

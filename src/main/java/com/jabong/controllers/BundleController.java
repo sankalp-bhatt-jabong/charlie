@@ -4,7 +4,6 @@ import java.util.*;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jabong.controllers.AppController;
 import com.jabong.models.Bundle;
 import com.jabong.models.dao.BundleDAO;
-import com.jabong.services.response.*;
-import com.jabong.services.response.fields.bundle.SummaryFields;
+import com.jabong.services.response.BaseResponse;
+import com.jabong.services.response.BundleListResponse;
 
 
 /**
@@ -32,21 +31,21 @@ public class BundleController extends AppController {
 	private BundleDAO bundleDao;
 	
 	@RequestMapping("/list")
-	public @ResponseBody List<SummaryFields> list() {
-		List<Bundle> bundles = bundleDao.activeList();
-		ListIterator<Bundle> bundleIterator = bundles.listIterator();
-		Bundle bundle = null;
-		ArrayList<SummaryFields> test = new ArrayList<SummaryFields>();
-		while(bundleIterator.hasNext()) {
-			bundle = (Bundle) bundleIterator.next();
-			SummaryFields sFields = new SummaryFields();
-			sFields.setId(bundle.getId());
-			sFields.setDisplay_name(bundle.getDisplayName());
-			test.add(sFields);
-		}
-		return test;
+	public @ResponseBody BaseResponse list() {
+		List<Bundle> bundles = bundleDao.fetchActiveList();
+		BaseResponse response = new BundleListResponse(bundles);
+		return response;
 		
 	}
+	
+	@RequestMapping("/detail")
+	public @ResponseBody Object detail() {
+		int bundleId = Integer.valueOf(request.getParameter("id"));
+		Object bundle = bundleDao.getDetailById(bundleId);
+		return bundle;
+		
+	}
+	
 	
 	@RequestMapping("/test")
 	public @ResponseBody String test() {

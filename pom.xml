@@ -61,12 +61,12 @@
 			<version>1.2</version>
 		</dependency>
 
-		<!-- Apache Database Connection Pool -->
+		<!-- Apache Database Connection Pool
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
 			<version>2.0</version>
-		</dependency>
+		</dependency>-->
 
 		<!-- MySQL JDBC Driver -->
 		<dependency>
