@@ -1,9 +1,9 @@
 package com.jabong.controllers;
 
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jabong.controllers.AppController;
 import com.jabong.models.Bundle;
 import com.jabong.models.dao.BundleDAO;
+import com.jabong.services.response.BaseResponse;
+import com.jabong.services.response.BundleListResponse;
 
 
 /**
@@ -29,10 +31,25 @@ public class BundleController extends AppController {
 	private BundleDAO bundleDao;
 	
 	@RequestMapping("/list")
-	public @ResponseBody List<Bundle> list() {
-		List<Bundle> bundles = bundleDao.list();
-		//Map<String, String[]> m = request.getParameterValues();
-		return bundles;
+	public @ResponseBody BaseResponse list() {
+		List<Bundle> bundles = bundleDao.fetchActiveList();
+		BaseResponse response = new BundleListResponse(bundles);
+		return response;
+	}
+	
+	@RequestMapping("/detail")
+	public @ResponseBody Object detail() {
+		int bundleId = Integer.valueOf(request.getParameter("id"));
+		Object bundle = bundleDao.getDetailById(bundleId);
+		return bundle;
+		
+	}
+	
+	@RequestMapping("/test")
+	public @ResponseBody String test() {
+		Calendar c = Calendar.getInstance();
+		String sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(c.getTime());
+		return sd;
 		//return "sdsds";
 	}
 
