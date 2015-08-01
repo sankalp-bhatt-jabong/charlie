@@ -35,7 +35,6 @@ public class BundleController extends AppController {
 		List<Bundle> bundles = bundleDao.fetchActiveList();
 		BaseResponse response = new BundleListResponse(bundles);
 		return response;
-		
 	}
 	
 	@RequestMapping("/detail")
@@ -46,7 +45,6 @@ public class BundleController extends AppController {
 		
 	}
 	
-	
 	@RequestMapping("/test")
 	public @ResponseBody String test() {
 		Calendar c = Calendar.getInstance();
@@ -54,7 +52,5 @@ public class BundleController extends AppController {
 		return sd;
 		//return "sdsds";
 	}
-	
-	
 
 }

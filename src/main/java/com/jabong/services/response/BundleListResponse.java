@@ -10,6 +10,7 @@ import com.jabong.services.response.fields.bundle.SummaryFields;
 
 public class BundleListResponse extends BaseResponse{
 	
+
 	public BundleListResponse(List<Bundle> bundles) {
 		ListIterator<Bundle> bundleIterator = bundles.listIterator();
 		ArrayList<SummaryFields> fields = new ArrayList<SummaryFields>();
