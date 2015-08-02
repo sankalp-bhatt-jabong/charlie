@@ -16,6 +16,8 @@ import com.jabong.models.Bundle;
 import com.jabong.models.dao.BundleDAO;
 import com.jabong.services.response.BaseResponse;
 import com.jabong.services.response.BundleListResponse;
+import com.jabong.services.response.Sku2BundleMapResponse;
+import com.jabong.services.response.fields.bundle.SummaryFields;
 
 
 /**
@@ -47,12 +49,11 @@ public class BundleController extends AppController {
 		
 	}
 	
-	@RequestMapping("/test")
-	public @ResponseBody String test() {
-		Calendar c = Calendar.getInstance();
-		String sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(c.getTime());
-		return sd;
-		//return "sdsds";
+	@RequestMapping("/sku-bundle-map")
+	public @ResponseBody Object skuBundleMap() {
+		List<?> rowsList = bundleDao.getReverseSkuBundleMap();
+		Object response = new Sku2BundleMapResponse(rowsList);
+		return response;
 	}
 
 }
