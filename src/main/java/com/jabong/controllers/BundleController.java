@@ -52,7 +52,7 @@ public class BundleController extends AppController {
 	
 	@RequestMapping("/test")
 	public @ResponseBody Object test() {
-		Bundle bundle = bundleDao.getDetailById(23);
+		Bundle bundle = bundleDao.getDetailById(22);
 		return bundle;
 		
 	}

@@ -10,6 +10,7 @@ import com.jabong.services.response.BaseResponse;
 import com.jabong.models.Bundle;
 import com.jabong.models.BundleSet;
 import com.jabong.models.BundleSetOption;
+import com.jabong.models.SkuBundleMessage;
 import com.jabong.services.response.fields.bundle.DetailFields;
 import com.jabong.services.response.fields.bundle.SetSummaryFields;
 import com.jabong.services.response.fields.bundle.SummaryFields;
@@ -27,8 +28,10 @@ public class BundleDetailResponse extends BaseResponse{
 		dFields.setBundle_filter_text(bundle.getBundleFilterText());
 		dFields.setDiscount_level(bundle.getDiscountLevel());
 		dFields.setSkip_bundle_calculation(bundle.getSkipBundleCalculation());
+		dFields.setFreebie_products(bundle.getFreebieProducts());
 		dFields.setIs_checkout_disabled(bundle.getIsCheckoutDisabled());
 		dFields.setIs_default_message_enabled(bundle.getIsDefaultMessageEnabled());
+		dFields.setMessages(this.getBundleMessages(bundle));
 		dFields.setAction_serialized(bundle.getActionSerialized());
 		dFields.setSets(this.prepareSetList(bundle));
 		dFields.setSkus_in_bundle(this.prepareSkuList(bundle));
@@ -37,6 +40,21 @@ public class BundleDetailResponse extends BaseResponse{
 		
 	}
 	
+	private String getBundleMessages(Bundle bundle) {
+		String messages = "";
+		int defaultMessageEnabled = bundle.getIsDefaultMessageEnabled();
+		if (defaultMessageEnabled == 1) {
+			messages = bundle.getDefaultMessages();
+		} else {
+			Set bundleMessages = bundle.getBundleMessages();
+			if (bundleMessages.iterator().hasNext()) {
+				SkuBundleMessage skumessage = (SkuBundleMessage) bundleMessages.iterator().next();
+				messages = skumessage.getMessages();
+			}
+			
+		}
+		return messages;
+	}
 	
 	private ArrayList<String> prepareSkuList(Bundle bundle) {
 		Set<BundleSet> sets = bundle.getBundleSets();

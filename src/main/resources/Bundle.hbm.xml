@@ -29,7 +29,11 @@
 			<key column="fk_sku_bundle" />
 			<one-to-many class="BundleSet" />
 		</set>
-
+		
+		<set name="bundleMessages" lazy="true">
+			<key column="fk_sku_bundle" />
+			<one-to-many class="SkuBundleMessage" />
+		</set>
 
 	</class>
 

@@ -9,5 +9,6 @@
     <mapping resource="Bundle.hbm.xml"/>
     <mapping resource="BundleSet.hbm.xml"/>
     <mapping resource="BundleSetOptions.hbm.xml"/>
+    <mapping resource="SkuBundleMessages.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

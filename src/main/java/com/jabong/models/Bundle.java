@@ -2,7 +2,6 @@ package com.jabong.models;
 
 import java.util.Set;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 public class Bundle {
 	private Integer id;
@@ -25,7 +24,15 @@ public class Bundle {
 	private String bundleFilterText;
 	
 	private Set<BundleSet> bundleSets;
+	private Set<SkuBundleMessage> bundleMessages;
 	
+	
+	public Set<SkuBundleMessage> getBundleMessages() {
+		return bundleMessages;
+	}
+	public void setBundleMessages(Set<SkuBundleMessage> bundleMessages) {
+		this.bundleMessages = bundleMessages;
+	}
 	public Set<BundleSet> getBundleSets() {
 		return bundleSets;
 	}
@@ -140,7 +147,5 @@ public class Bundle {
 	public void setBundleFilterText(String bundleFilterText) {
 		this.bundleFilterText = bundleFilterText;
 	}
-	
-	
 	
 }

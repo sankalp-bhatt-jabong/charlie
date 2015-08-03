@@ -42,6 +42,7 @@ public class BundleDAO extends BaseDAO{
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Bundle.class);
 		criteria.add(Restrictions.eq("id", bundleId));
+		criteria.setFetchMode("bundleMessages", FetchMode.JOIN);
 		criteria.setFetchMode("bundleSets", FetchMode.JOIN);
 		criteria.setFetchMode("bundleSets.bundleSetOptions", FetchMode.JOIN);
 		Bundle result = (Bundle) criteria.uniqueResult();

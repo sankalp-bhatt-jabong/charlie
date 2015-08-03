@@ -1,6 +1,7 @@
 package com.jabong.services.response.fields.bundle;
 
 import java.util.List;
+import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -14,12 +15,41 @@ public class DetailFields {
 	private String discount_level;
 	private Integer skip_bundle_calculation;
 	private Integer is_checkout_disabled;
+	private List<?> freebie_products;
 	private Integer is_default_message_enabled;
-	private String default_messages;
+	private Map messages;
 	private ActionSerializedFields action_serialized;
 	private List<SetSummaryFields> sets;
 	private List<String> skus_in_bundle;
 	
+	
+	
+	public List<?> getFreebie_products() {
+		return freebie_products;
+	}
+	public void setFreebie_products(String freebie_products) {
+		List<?> data = null;
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			data = (List<?>) mapper.readValue(freebie_products, List.class);
+		} catch(Exception e) {
+			//do nothing
+		}
+		this.freebie_products = data;
+	}
+	public Map getMessages() {
+		return messages;
+	}
+	public void setMessages(String messages) {
+		Map data = null;
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			data = (Map) mapper.readValue(messages, Map.class);
+		} catch(Exception e) {
+			//do nothing
+		}
+		this.messages = data;
+	}
 	public int getId() {
 		return id;
 	}
@@ -74,12 +104,7 @@ public class DetailFields {
 	public void setIs_default_message_enabled(Integer is_default_message_enabled) {
 		this.is_default_message_enabled = is_default_message_enabled;
 	}
-	public String getDefault_messages() {
-		return default_messages;
-	}
-	public void setDefault_messages(String default_messages) {
-		this.default_messages = default_messages;
-	}
+	
 	public ActionSerializedFields getAction_serialized() {
 		return action_serialized;
 	}
