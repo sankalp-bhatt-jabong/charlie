@@ -15,6 +15,7 @@ import com.jabong.controllers.AppController;
 import com.jabong.models.Bundle;
 import com.jabong.models.dao.BundleDAO;
 import com.jabong.services.response.BaseResponse;
+import com.jabong.services.response.BundleDetailResponse;
 import com.jabong.services.response.BundleListResponse;
 import com.jabong.services.response.Sku2BundleMapResponse;
 import com.jabong.services.response.fields.bundle.SummaryFields;
@@ -43,8 +44,15 @@ public class BundleController extends AppController {
 	@RequestMapping("/detail")
 	public @ResponseBody Object detail() {
 		int bundleId = Integer.valueOf(request.getParameter("id"));
-		Object bundle = bundleDao.getDetailById(bundleId);
+		Bundle bundle = bundleDao.getDetailById(bundleId);
+		BundleDetailResponse response = new BundleDetailResponse(bundle);
+		return response;
 		
+	}
+	
+	@RequestMapping("/test")
+	public @ResponseBody Object test() {
+		Bundle bundle = bundleDao.getDetailById(23);
 		return bundle;
 		
 	}
