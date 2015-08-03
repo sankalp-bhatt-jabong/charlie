@@ -1,5 +1,8 @@
 package com.jabong.models;
 
+import java.util.Set;
+
+
 public class Bundle {
 	private Integer id;
 	private Integer csvCount;
@@ -19,6 +22,23 @@ public class Bundle {
 	private String defaultMessages;
 	private String bundleBadge;
 	private String bundleFilterText;
+	
+	private Set<BundleSet> bundleSets;
+	private Set<SkuBundleMessage> bundleMessages;
+	
+	
+	public Set<SkuBundleMessage> getBundleMessages() {
+		return bundleMessages;
+	}
+	public void setBundleMessages(Set<SkuBundleMessage> bundleMessages) {
+		this.bundleMessages = bundleMessages;
+	}
+	public Set<BundleSet> getBundleSets() {
+		return bundleSets;
+	}
+	public void setBundleSets(Set<BundleSet> bundleSet) {
+		this.bundleSets = bundleSet;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -127,7 +147,5 @@ public class Bundle {
 	public void setBundleFilterText(String bundleFilterText) {
 		this.bundleFilterText = bundleFilterText;
 	}
-	
-	
 	
 }

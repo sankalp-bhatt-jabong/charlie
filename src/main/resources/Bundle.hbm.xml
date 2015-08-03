@@ -24,5 +24,31 @@
 		<property name="defaultMessages" column="default_messages" />
 		<property name="bundleBadge" column="bundle_badge" />
 		<property name="bundleFilterText" column="bundle_filter_text" />
+
+		<set name="bundleSets" lazy="true">
+			<key column="fk_sku_bundle" />
+			<one-to-many class="BundleSet" />
+		</set>
+		
+		<set name="bundleMessages" lazy="true">
+			<key column="fk_sku_bundle" />
+			<one-to-many class="SkuBundleMessage" />
+		</set>
+
 	</class>
+
+	<sql-query name="sku2BundleMapping">
+	<return-scalar column="id" type="int"/>
+	<return-scalar column="sku" type="string"/>
+		SELECT id_sku_bundle AS id,sku FROM sku_bundle
+		INNER JOIN sku_bundle_sets
+		ON sku_bundle.id_sku_bundle = sku_bundle_sets. fk_sku_bundle
+		INNER JOIN sku_bundle_sets_options
+		ON sku_bundle_sets.id_sku_bundle_sets =
+		sku_bundle_sets_options.fk_sku_bundle_sets
+		WHERE is_active=1
+		GROUP BY sku
+	</sql-query>
+
+
 </hibernate-mapping>
