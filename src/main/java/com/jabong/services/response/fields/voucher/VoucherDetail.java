@@ -2,7 +2,7 @@ package com.jabong.services.response.fields.voucher;
 
 public class VoucherDetail {
 	private int id_sales_rule_set;
-	private String conditions_ruleset;
+	private Object conditions_ruleset;
 	private String discount_type;
 	private Float discount_percentage;
 	
@@ -12,10 +12,10 @@ public class VoucherDetail {
 	public void setId_sales_rule_set(int id_sales_rule_set) {
 		this.id_sales_rule_set = id_sales_rule_set;
 	}
-	public String getConditions_ruleset() {
+	public Object getConditions_ruleset() {
 		return conditions_ruleset;
 	}
-	public void setConditions_ruleset(String conditions_ruleset) {
+	public void setConditions_ruleset(Object conditions_ruleset) {
 		this.conditions_ruleset = conditions_ruleset;
 	}
 	public String getDiscount_type() {
