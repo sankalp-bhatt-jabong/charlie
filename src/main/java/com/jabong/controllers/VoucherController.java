@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jabong.controllers.AppController;
 import com.jabong.models.Voucher;
 import com.jabong.models.dao.VoucherDAO;
+import com.jabong.services.response.BaseResponse;
+import com.jabong.services.response.VoucherResponse;
 
 
 /**
@@ -30,10 +32,13 @@ public class VoucherController extends AppController {
 	private VoucherDAO voucherDao;
 	
 	@RequestMapping("/detail")
-	public @ResponseBody List<Voucher> list(@RequestParam(value="id") int id) {
-		List<Voucher> vouchers = voucherDao.list(id);
+	public @ResponseBody BaseResponse detail(@RequestParam(value="id") int id) {
+		List<Voucher> vouchers = voucherDao.getDetailById(id);
 		//Map<String, String[]> m = request.getParameterValues();
-		return vouchers;
+		BaseResponse response = new VoucherResponse(vouchers);
+		return response;
+		
+		//return vouchers;
 		//return "sdsds";
 	}
 

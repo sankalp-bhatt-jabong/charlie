@@ -16,7 +16,7 @@ public class VoucherDAO {
 	}
 
 	@Transactional
-	public List<Voucher> list(int id) {
+	public List<Voucher> getDetailById(int id) {
 		@SuppressWarnings("unchecked")
 		
 		List<Voucher> vouchers = (List<Voucher>) sessionFactory.getCurrentSession()
