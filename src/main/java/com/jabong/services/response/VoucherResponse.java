@@ -18,9 +18,13 @@ public class VoucherResponse extends BaseResponse {
 		ConditionsRuleSet cr = null;
 		vFields.setId_sales_rule_set(voucher.getId());
 		cr = new ConditionsRuleSet(voucher.getConditionsRuleset());
+		//ConditionsRuleSet cr1 = new ConditionsRuleSet();
 		vFields.setConditions_ruleset(cr);
 		vFields.setDiscount_type(voucher.getDiscountType());
 		vFields.setDiscount_percentage(voucher.getDiscountPercentage());
+		//vFields.setMobilevoucher_app(cr.getMobilevoucher_app());
+		//vFields.setMobilevoucher_desktop(cr.getMobilevoucher_desktop());
+		//vFields.setMobilevoucher_site(cr.getMobilevoucher_site());
 		this.setData(vFields);
 		this.setStatus(true);
 	}
