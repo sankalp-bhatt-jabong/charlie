@@ -4,15 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
-
 import com.jabong.services.response.BaseResponse;
-import com.jabong.models.Bundle;
-import com.jabong.services.response.fields.bundle.SummaryFields;
 
-public class Sku2BundleMapResponse extends BaseResponse{
-	
+public class Sku2BundleMapResponse extends BaseResponse {
 
 	public Sku2BundleMapResponse(List<?> resultset) {
 		Iterator<?> resultsetItr = resultset.iterator();

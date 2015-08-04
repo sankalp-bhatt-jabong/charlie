@@ -12,7 +12,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
-public class BundleDAO extends BaseDAO{
+public class BundleDAO extends BaseDAO {
 	private SessionFactory sessionFactory;
 
 	public BundleDAO(SessionFactory sessionFactory) {
@@ -58,22 +58,19 @@ public class BundleDAO extends BaseDAO{
 		Session session = sessionFactory.getCurrentSession();
 		List<?> res = session.getNamedQuery("sku2BundleMapping")
 				.setString("to_date", BundleDAO.getCurrentDate())
-				.setString("from_date", BundleDAO.getCurrentDate())
-				.list();
+				.setString("from_date", BundleDAO.getCurrentDate()).list();
 		return res;
 	}
-	
+
 	@Transactional
 	public List<?> geBundlesOfSku(String sku) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.getNamedQuery("sku2BundleMappingBySku")
 				.setString("sku", sku)
 				.setString("to_date", BundleDAO.getCurrentDate())
-				.setString("from_date", BundleDAO.getCurrentDate())
-				;
+				.setString("from_date", BundleDAO.getCurrentDate());
 		List<?> res = query.list();
 		return res;
 	}
 
-	
 }

@@ -29,7 +29,7 @@
 			<key column="fk_sku_bundle" />
 			<one-to-many class="BundleSet" />
 		</set>
-		
+
 		<set name="bundleMessages" lazy="true">
 			<key column="fk_sku_bundle" />
 			<one-to-many class="SkuBundleMessage" />
@@ -38,8 +38,8 @@
 	</class>
 
 	<sql-query name="sku2BundleMapping">
-	<return-scalar column="id" type="int"/>
-	<return-scalar column="sku" type="string"/>
+		<return-scalar column="id" type="int" />
+		<return-scalar column="sku" type="string" />
 	<![CDATA[
 		SELECT id_sku_bundle AS id,sku FROM sku_bundle
 		INNER JOIN sku_bundle_sets
@@ -68,6 +68,4 @@
 		AND to_date >= :to_date
 		]]>
 	</sql-query>
-
-
 </hibernate-mapping>

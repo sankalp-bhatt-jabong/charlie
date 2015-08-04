@@ -1,16 +1,11 @@
 package com.jabong.controllers;
 
 import java.util.*;
-import java.text.SimpleDateFormat;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.jabong.controllers.AppController;
 import com.jabong.models.Bundle;
 import com.jabong.models.dao.BundleDAO;
@@ -19,7 +14,6 @@ import com.jabong.services.response.BundleDetailResponse;
 import com.jabong.services.response.BundleListResponse;
 import com.jabong.services.response.BundlesOfSkuResponse;
 import com.jabong.services.response.Sku2BundleMapResponse;
-import com.jabong.services.response.fields.bundle.SummaryFields;
 
 /**
  * Handles requests for the application home page.
@@ -36,40 +30,47 @@ public class BundleController extends AppController {
 
 	@RequestMapping("/list")
 	public @ResponseBody BaseResponse list() {
-		String skucode = request.getParameter("sku");
-		BaseResponse response = null;
-		if ((skucode == null) || (skucode.isEmpty())) {
-			List<Bundle> bundles = bundleDao.fetchActiveList();
-			response = new BundleListResponse(bundles);
-		} else {
-			List<?> bundleIds = (List<?>) bundleDao.geBundlesOfSku(skucode);
-			response = new BundlesOfSkuResponse(bundleIds);
+		BaseResponse response = new BaseResponse();
+		try {
+			String skucode = request.getParameter("sku");
+			if ((skucode == null) || (skucode.isEmpty())) {
+				List<Bundle> bundles = bundleDao.fetchActiveList();
+				response = new BundleListResponse(bundles);
+			} else {
+				List<?> bundleIds = (List<?>) bundleDao.geBundlesOfSku(skucode);
+				response = new BundlesOfSkuResponse(bundleIds);
+			}
+		} catch (Exception e) {
+			response.setData(e.getMessage());
+			response.setStatus(false);
 		}
 		return response;
-
 	}
 
 	@RequestMapping("/detail")
 	public @ResponseBody Object detail() {
-		int bundleId = Integer.valueOf(request.getParameter("id"));
-		Bundle bundle = bundleDao.getDetailById(bundleId);
-		BundleDetailResponse response = new BundleDetailResponse(bundle);
+		BaseResponse response = new BaseResponse();
+		try {
+			int bundleId = Integer.valueOf(request.getParameter("id"));
+			Bundle bundle = bundleDao.getDetailById(bundleId);
+			response = new BundleDetailResponse(bundle);
+		} catch (Exception e) {
+			response.setData(e.getMessage());
+			response.setStatus(false);
+		}
 		return response;
-
-	}
-
-	@RequestMapping("/test")
-	public @ResponseBody Object test() {
-		List<?> bundle = bundleDao.geBundlesOfSku("PU102KA57QVEINDFAS");
-		return bundle;
-
 	}
 
 	@RequestMapping("/sku-bundle-map")
 	public @ResponseBody Object skuBundleMap() {
+		BaseResponse response = new BaseResponse();
+		try {
 		List<?> rowsList = bundleDao.getReverseSkuBundleMap();
-		Object response = new Sku2BundleMapResponse(rowsList);
+		response = new Sku2BundleMapResponse(rowsList);
+		} catch(Exception e) {
+			response.setData(e.getMessage());
+			response.setStatus(false);
+		}
 		return response;
 	}
-
 }

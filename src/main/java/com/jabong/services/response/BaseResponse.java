@@ -1,6 +1,6 @@
 package com.jabong.services.response;
 
-abstract public class BaseResponse {
+public class BaseResponse {
 
 	private Boolean status;
 	private Object data;
