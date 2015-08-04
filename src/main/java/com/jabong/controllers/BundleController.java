@@ -67,13 +67,8 @@ public class BundleController extends AppController {
 	@RequestMapping("/sku-bundle-map")
 	public @ResponseBody Object skuBundleMap() throws Exception{
 		BaseResponse response = new BaseResponse();
-		try {
 		List<?> rowsList = bundleDao.getReverseSkuBundleMap();
 		response = new Sku2BundleMapResponse(rowsList);
-		} catch(Exception e) {
-			response.setData(e.getMessage());
-			response.setStatus(false);
-		}
 		return response;
 	}
 }
