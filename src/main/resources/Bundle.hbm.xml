@@ -40,6 +40,7 @@
 	<sql-query name="sku2BundleMapping">
 	<return-scalar column="id" type="int"/>
 	<return-scalar column="sku" type="string"/>
+	<![CDATA[
 		SELECT id_sku_bundle AS id,sku FROM sku_bundle
 		INNER JOIN sku_bundle_sets
 		ON sku_bundle.id_sku_bundle = sku_bundle_sets. fk_sku_bundle
@@ -47,7 +48,25 @@
 		ON sku_bundle_sets.id_sku_bundle_sets =
 		sku_bundle_sets_options.fk_sku_bundle_sets
 		WHERE is_active=1
+		AND from_date <= :from_date
+		AND to_date >= :to_date
 		GROUP BY sku
+		]]>
+	</sql-query>
+	<sql-query name="sku2BundleMappingBySku">
+		<![CDATA[
+		SELECT id_sku_bundle AS id 
+		FROM sku_bundle_sets_options
+		INNER JOIN sku_bundle_sets
+		ON sku_bundle_sets_options.fk_sku_bundle_sets =
+		sku_bundle_sets.id_sku_bundle_sets
+		INNER JOIN sku_bundle
+		ON sku_bundle_sets.fk_sku_bundle = sku_bundle.id_sku_bundle
+		WHERE sku= :sku
+		AND is_active=1
+		AND from_date <= :from_date
+		AND to_date >= :to_date
+		]]>
 	</sql-query>
 
 

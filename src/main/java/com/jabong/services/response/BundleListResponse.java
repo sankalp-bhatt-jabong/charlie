@@ -24,4 +24,5 @@ public class BundleListResponse extends BaseResponse{
 		this.setData(fields);
 		this.setStatus(true);
 	}
+	
 }
