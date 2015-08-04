@@ -1,6 +1,7 @@
 package com.jabong.controllers;
 
 import java.util.*;
+import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,40 +30,42 @@ public class BundleController extends AppController {
 	private BundleDAO bundleDao;
 
 	@RequestMapping("/list")
-	public @ResponseBody BaseResponse list() {
+	public @ResponseBody BaseResponse list() throws Exception {
 		BaseResponse response = new BaseResponse();
-		try {
-			String skucode = request.getParameter("sku");
-			if ((skucode == null) || (skucode.isEmpty())) {
-				List<Bundle> bundles = bundleDao.fetchActiveList();
-				response = new BundleListResponse(bundles);
-			} else {
-				List<?> bundleIds = (List<?>) bundleDao.geBundlesOfSku(skucode);
-				response = new BundlesOfSkuResponse(bundleIds);
-			}
-		} catch (Exception e) {
-			response.setData(e.getMessage());
-			response.setStatus(false);
+		String skucode = request.getParameter("sku");
+		if (StringUtils.isBlank(skucode)) {
+			List<Bundle> bundles = bundleDao.fetchActiveList();
+			response = new BundleListResponse(bundles);
+		} else {
+			List<?> bundleIds = (List<?>) bundleDao.geBundlesOfSku(skucode);
+			response = new BundlesOfSkuResponse(bundleIds);
 		}
 		return response;
 	}
 
 	@RequestMapping("/detail")
-	public @ResponseBody Object detail() {
+	public @ResponseBody Object detail() throws Exception {
 		BaseResponse response = new BaseResponse();
-		try {
-			int bundleId = Integer.valueOf(request.getParameter("id"));
-			Bundle bundle = bundleDao.getDetailById(bundleId);
-			response = new BundleDetailResponse(bundle);
-		} catch (Exception e) {
-			response.setData(e.getMessage());
-			response.setStatus(false);
+		String id = request.getParameter("id");
+		String displaySku = request.getParameter("displaySku");
+		if (StringUtils.isBlank(id)) {
+			throw new Exception("Please Supply valid parameter value.");
 		}
+		if (StringUtils.isBlank(displaySku)) {
+			displaySku = "0";
+		}
+		int bundleId = Integer.valueOf(id);
+		Boolean displaysku = (Integer.valueOf(displaySku) == 1);
+		Bundle bundle = bundleDao.getDetailById(bundleId, displaysku);
+		if (bundle == null) {
+			throw new Exception("Bundle Not Found.");
+		}
+		response = new BundleDetailResponse(bundle, displaysku);
 		return response;
 	}
 
 	@RequestMapping("/sku-bundle-map")
-	public @ResponseBody Object skuBundleMap() {
+	public @ResponseBody Object skuBundleMap() throws Exception{
 		BaseResponse response = new BaseResponse();
 		try {
 		List<?> rowsList = bundleDao.getReverseSkuBundleMap();

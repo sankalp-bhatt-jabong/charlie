@@ -42,13 +42,15 @@ public class BundleDAO extends BaseDAO {
 	}
 
 	@Transactional
-	public Bundle getDetailById(int bundleId) {
+	public Bundle getDetailById(int bundleId, Boolean displaySku) {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Bundle.class);
 		criteria.add(Restrictions.eq("id", bundleId));
 		criteria.setFetchMode("bundleMessages", FetchMode.JOIN);
 		criteria.setFetchMode("bundleSets", FetchMode.JOIN);
-		criteria.setFetchMode("bundleSets.bundleSetOptions", FetchMode.JOIN);
+		if (displaySku) {
+			criteria.setFetchMode("bundleSets.bundleSetOptions", FetchMode.JOIN);
+		}
 		Bundle result = (Bundle) criteria.uniqueResult();
 		return result;
 	}

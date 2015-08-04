@@ -1,5 +1,6 @@
 package com.jabong.controllers;
 
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -9,9 +10,18 @@ public class AppController {
 	
 	@RequestMapping("*")
 	@ResponseBody
-	public BaseResponse fallbackMethod() {
+	public void fallbackMethod() throws Exception {
+		throw new Exception("Page not found");
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public @ResponseBody BaseResponse exception(Exception e) {
 		BaseResponse response = new BaseResponse();
-		response.setData("Page Not Found");
+		String message = "An exception occurred.";
+		if (e.getMessage() != null) {
+			message = e.getMessage();
+		}
+		response.setData(message);
 		response.setStatus(false);
 		return response;
 	}

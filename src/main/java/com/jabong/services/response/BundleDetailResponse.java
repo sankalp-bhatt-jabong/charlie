@@ -13,9 +13,12 @@ import com.jabong.services.response.fields.bundle.DetailFields;
 import com.jabong.services.response.fields.bundle.SetSummaryFields;
 
 public class BundleDetailResponse extends BaseResponse {
+	
+	public Boolean displaySku = false;
 
-	public BundleDetailResponse(Bundle bundle) {
+	public BundleDetailResponse(Bundle bundle, Boolean displaySku) {
 
+		this.displaySku = displaySku;
 		DetailFields dFields = new DetailFields();
 		dFields.setId(bundle.getId());
 		dFields.setCsv_count(bundle.getCsvCount());
@@ -55,9 +58,12 @@ public class BundleDetailResponse extends BaseResponse {
 	}
 
 	private ArrayList<String> prepareSkuList(Bundle bundle) {
+		ArrayList<String> skuList = new ArrayList<String>();
+		if (!this.displaySku) {
+			return skuList;
+		}
 		Set<BundleSet> sets = bundle.getBundleSets();
 		Iterator setIterator = sets.iterator();
-		ArrayList<String> skuList = new ArrayList<String>();
 		while (setIterator.hasNext()) {
 			BundleSet bundleset = (BundleSet) setIterator.next();
 			Set<BundleSetOption> setOptions = bundleset.getBundleSetOptions();
