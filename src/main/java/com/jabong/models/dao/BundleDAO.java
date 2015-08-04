@@ -1,15 +1,18 @@
 package com.jabong.models.dao;
 
 import java.util.List;
+
 import com.jabong.models.Bundle;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.FetchMode;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
-public class BundleDAO extends BaseDAO{
+public class BundleDAO extends BaseDAO {
 	private SessionFactory sessionFactory;
 
 	public BundleDAO(SessionFactory sessionFactory) {
@@ -32,19 +35,22 @@ public class BundleDAO extends BaseDAO{
 		Criteria criteria = session.createCriteria(Bundle.class);
 		criteria.add(Restrictions.eq("isActive", 1));
 		criteria.add(Restrictions.gt("toDate", BundleDAO.getCurrentDate()));
+		criteria.add(Restrictions.lt("fromDate", BundleDAO.getCurrentDate()));
 		@SuppressWarnings("unchecked")
 		List<Bundle> results = criteria.list();
 		return results;
 	}
 
 	@Transactional
-	public Bundle getDetailById(int bundleId) {
+	public Bundle getDetailById(int bundleId, Boolean displaySku) {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Bundle.class);
 		criteria.add(Restrictions.eq("id", bundleId));
 		criteria.setFetchMode("bundleMessages", FetchMode.JOIN);
 		criteria.setFetchMode("bundleSets", FetchMode.JOIN);
-		criteria.setFetchMode("bundleSets.bundleSetOptions", FetchMode.JOIN);
+		if (displaySku) {
+			criteria.setFetchMode("bundleSets.bundleSetOptions", FetchMode.JOIN);
+		}
 		Bundle result = (Bundle) criteria.uniqueResult();
 		return result;
 	}
@@ -53,9 +59,20 @@ public class BundleDAO extends BaseDAO{
 	public List<?> getReverseSkuBundleMap() {
 		Session session = sessionFactory.getCurrentSession();
 		List<?> res = session.getNamedQuery("sku2BundleMapping")
-				.list();
+				.setString("to_date", BundleDAO.getCurrentDate())
+				.setString("from_date", BundleDAO.getCurrentDate()).list();
 		return res;
 	}
 
-	
+	@Transactional
+	public List<?> geBundlesOfSku(String sku) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.getNamedQuery("sku2BundleMappingBySku")
+				.setString("sku", sku)
+				.setString("to_date", BundleDAO.getCurrentDate())
+				.setString("from_date", BundleDAO.getCurrentDate());
+		List<?> res = query.list();
+		return res;
+	}
+
 }

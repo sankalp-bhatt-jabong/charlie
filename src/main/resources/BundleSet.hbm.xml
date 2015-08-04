@@ -19,5 +19,4 @@
 			<one-to-many class="BundleSetOption" />
 		</set>
 	</class>
-
 </hibernate-mapping>

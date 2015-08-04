@@ -10,5 +10,4 @@
 		<property name="fkSkuBundleSets" column="fk_sku_bundle_sets" />
 		<property name="sku" column="sku" />
 	</class>
-
 </hibernate-mapping>
