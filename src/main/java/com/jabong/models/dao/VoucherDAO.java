@@ -16,11 +16,11 @@ public class VoucherDAO {
 	}
 
 	@Transactional
-	public List<Voucher> getDetailById(int id) {
+	public Voucher getDetailById(int id) {
 		@SuppressWarnings("unchecked")
 		
-		List<Voucher> vouchers = (List<Voucher>) sessionFactory.getCurrentSession()
-				.createQuery("from Voucher V where V.id=:id").setParameter("id",id).list();
+		Voucher vouchers = (Voucher) sessionFactory.getCurrentSession()
+				.createQuery("from Voucher V where V.id=:id").setParameter("id",id).uniqueResult();
 
 		return vouchers;
 	}

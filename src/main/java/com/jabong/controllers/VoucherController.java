@@ -1,5 +1,6 @@
 package com.jabong.controllers;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,10 +33,10 @@ public class VoucherController extends AppController {
 	private VoucherDAO voucherDao;
 	
 	@RequestMapping("/detail")
-	public @ResponseBody BaseResponse detail(@RequestParam(value="id") int id) {
-		List<Voucher> vouchers = voucherDao.getDetailById(id);
+	public @ResponseBody BaseResponse detail(@RequestParam(value="id") int id) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+		Voucher voucher = voucherDao.getDetailById(id);
 		//Map<String, String[]> m = request.getParameterValues();
-		BaseResponse response = new VoucherResponse(vouchers);
+		BaseResponse response = new VoucherResponse(voucher);
 		return response;
 		
 		//return vouchers;
