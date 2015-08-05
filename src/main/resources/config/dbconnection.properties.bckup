@@ -1,0 +1,12 @@
+#DB connection 
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://127.0.0.1:3306/indus_19533
+jdbc.username=root
+jdbc.password=1234567
+
+#Hibernate
+hibernate.dialect=org.hibernate.dialect.MySQLDialect
+hibernate.show_sql=true
+hibernate.format_sql=true
+hibernate.use_sql_comments=true
+
