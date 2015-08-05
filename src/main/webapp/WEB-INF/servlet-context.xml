@@ -37,6 +37,14 @@
         class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="/WEB-INF/classes/config/hibernate.cfg.xml" />
+		<property name="hibernateProperties">
+        <value>
+            hibernate.dialect=${hibernate.dialect}
+            hibernate.show_sql=${hibernate.show_sql}
+            hibernate.format_sql=${hibernate.format_sql}
+            hibernate.use_sql_comments=${hibernate.use_sql_comments}
+        </value>
+    </property>
     </bean>
      
     <tx:annotation-driven />
