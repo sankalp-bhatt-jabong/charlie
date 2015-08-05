@@ -5,6 +5,7 @@ public class VoucherDetail {
 	private Object conditions_ruleset;
 	private String discount_type;
 	private Float discount_percentage;
+	private Float discount_amount_default;
 	private String mobilevoucher_app;
 	private String mobilevoucher_site;
 	private String mobilevoucher_desktop;
@@ -65,4 +66,13 @@ public class VoucherDetail {
 		this.discount_percentage = discount_percentage;
 	}
 
+	public Float getDiscount_amount_default() {
+		return discount_amount_default;
+	}
+
+	public void setDiscount_amount_default(Float discount_amount_default) {
+		this.discount_amount_default = discount_amount_default;
+	}
+	
+	
 }

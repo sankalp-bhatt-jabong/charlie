@@ -1,13 +1,17 @@
 package com.jabong.services;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class ConditionsRuleSet {
-	private Boolean Subtotal;
+	private int Subtotal;
 	private Map Category;
-	private Boolean CapOnDiscount;
+	private String customer;
+	private Map paymentMethod;
+	private Map capOnDiscount;
 	private Map SkuExclude;
-	private String DiscountedItem;
+	private int DiscountedItem;
+	private int discounted;
 	private Map TaggedItem;
 	private String taggeditem;
 	private String tagvalue;
@@ -17,7 +21,7 @@ public class ConditionsRuleSet {
 	private String segmentedvoucher_checkbox;
 	private String segment_landing_url;
 	private String pdp_segment_text;
-	private Map Bundle;
+	private Map bundle;
 	private Map MobileVoucher;
 	private String mobilevoucher_app;
 	private String mobilevoucher_site;
@@ -46,6 +50,54 @@ public class ConditionsRuleSet {
 			if (sv.containsKey("segmentedvoucher_checkbox")) {
 				this.setSegmentedvoucher_checkbox((String) sv
 						.get("segmentedvoucher_checkbox"));
+			}
+		}
+
+		if (result.containsKey("Category")) {
+			this.setCategory((Map) result.get("Category"));
+		}
+
+		if (result.containsKey("Customer")) {
+			this.setCustomer((String) result.get("Customer"));
+		}
+
+		if (result.containsKey("Paymentmethod")) {
+			if (result.get("Paymentmethod").equals(false)) {
+				this.setPaymentMethod(Collections.emptyMap());
+			} else {
+				this.setPaymentMethod((Map) result.get("Paymentmethod"));
+			}
+		}
+
+		if (result.containsKey("SkuExclude")) {
+			this.setSkuExclude((Map) result.get("SkuExclude"));
+		}
+
+		if (result.containsKey("Bundle")) {
+			if (result.get("Bundle").equals(false)) {
+				this.setBundle(Collections.emptyMap());
+			} else {
+				this.setBundle((Map) result.get("Bundle"));
+			}
+		}
+		
+		if(result.containsKey("Discounted")) {
+			int value;
+			if ((result.get("Discounted").equals(false))) {
+				value = 0;
+			} else {
+				value = Integer.parseInt((String) result.get("Discounted"));
+			}
+			// int i =(Boolean) result.get("DiscountedItem") ?
+			// (Integer)result.get("DiscountedItem") : 0;
+			this.setDiscounted(value);
+		}
+
+		if (result.containsKey("CapOnDiscount")) {
+			if (result.get("CapOnDiscount").equals(false)) {
+				this.setCapOnDiscount(Collections.emptyMap());
+			} else {
+				this.setCapOnDiscount((Map) result.get("CapOnDiscount"));
 			}
 		}
 
@@ -83,7 +135,25 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("DiscountedItem")) {
-			this.setDiscountedItem((String) result.get("DiscountedItem"));
+			int value;
+			if ((result.get("DiscountedItem").equals(false))) {
+				value = 0;
+			} else {
+				value = Integer.parseInt((String) result.get("DiscountedItem"));
+			}
+			// int i =(Boolean) result.get("DiscountedItem") ?
+			// (Integer)result.get("DiscountedItem") : 0;
+			this.setDiscountedItem(value);
+		}
+
+		if (result.containsKey("Subtotal")) {
+			int value;
+			if ((result.get("Subtotal").equals(false))) {
+				value = 0;
+			} else {
+				value = Integer.parseInt((String) result.get("Subtotal"));
+			}
+			this.setSubtotal(value);
 		}
 	}
 
@@ -95,11 +165,11 @@ public class ConditionsRuleSet {
 		this.pdp_segment_text = pdp_segment_text;
 	}
 
-	public Boolean getSubtotal() {
+	public int getSubtotal() {
 		return Subtotal;
 	}
 
-	public void setSubtotal(Boolean subtotal) {
+	public void setSubtotal(int subtotal) {
 		Subtotal = subtotal;
 	}
 
@@ -111,12 +181,28 @@ public class ConditionsRuleSet {
 		Category = category;
 	}
 
-	public Boolean getCapOnDiscount() {
-		return CapOnDiscount;
+	public String getCustomer() {
+		return customer;
 	}
 
-	public void setCapOnDiscount(Boolean capOnDiscount) {
-		CapOnDiscount = capOnDiscount;
+	public void setCustomer(String customer) {
+		this.customer = customer;
+	}
+
+	public Map getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(Map paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+	public Map getCapOnDiscount() {
+		return capOnDiscount;
+	}
+
+	public void setCapOnDiscount(Map capOnDiscount) {
+		this.capOnDiscount = capOnDiscount;
 	}
 
 	public Map getSkuExclude() {
@@ -127,12 +213,20 @@ public class ConditionsRuleSet {
 		SkuExclude = skuExclude;
 	}
 
-	public String getDiscountedItem() {
+	public int getDiscountedItem() {
 		return DiscountedItem;
 	}
 
-	public void setDiscountedItem(String discountedItem) {
+	public void setDiscountedItem(int discountedItem) {
 		DiscountedItem = discountedItem;
+	}
+
+	public int getDiscounted() {
+		return discounted;
+	}
+
+	public void setDiscounted(int discounted) {
+		this.discounted = discounted;
 	}
 
 	public Map getTaggedItem() {
@@ -152,11 +246,11 @@ public class ConditionsRuleSet {
 	}
 
 	public Map getBundle() {
-		return Bundle;
+		return bundle;
 	}
 
 	public void setBundle(Map bundle) {
-		Bundle = bundle;
+		this.bundle = bundle;
 	}
 
 	public Map getMobileVoucher() {
