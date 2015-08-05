@@ -65,7 +65,7 @@ public class BundleDAO extends BaseDAO {
 	}
 
 	@Transactional
-	public List<?> geBundlesOfSku(String sku) {
+	public List<?> getBundlesOfSku(String sku) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.getNamedQuery("sku2BundleMappingBySku")
 				.setString("sku", sku)

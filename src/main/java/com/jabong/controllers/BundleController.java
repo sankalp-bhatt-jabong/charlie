@@ -37,7 +37,7 @@ public class BundleController extends AppController {
 			List<Bundle> bundles = bundleDao.fetchActiveList();
 			response = new BundleListResponse(bundles);
 		} else {
-			List<?> bundleIds = (List<?>) bundleDao.geBundlesOfSku(skucode);
+			List<?> bundleIds = (List<?>) bundleDao.getBundlesOfSku(skucode);
 			response = new BundlesOfSkuResponse(bundleIds);
 		}
 		return response;
