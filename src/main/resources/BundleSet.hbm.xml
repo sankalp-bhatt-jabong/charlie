@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jabong.models">
+	<class name="BundleSet" table="sku_bundle_sets">
+		<id name="id" column="id_sku_bundle_sets">
+			<generator class="native" />
+		</id>
+		<property name="fkSkuBundle" column="fk_sku_bundle" />
+		<property name="label" column="label" />
+		<property name="discountApplicableOn" column="discount_applicable_on" />
+		<property name="operator" column="operator" />
+		<property name="quantity" column="quantity" />
+		<property name="actionSerialized" column="action_serialized" />
+		
+		<set name="bundleSetOptions" lazy="true">
+			<key column="fk_sku_bundle_sets" />
+			<one-to-many class="BundleSetOption" />
+		</set>
+	</class>
+</hibernate-mapping>

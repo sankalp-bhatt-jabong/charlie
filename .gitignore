@@ -95,27 +95,12 @@ Session.vim
 _notes/*
 dwsync.xml
 
-##############################
-# Zend Framework Ignore List #
-##############################
-/*.zfproject.xml# Composer files
-composer.phar
-composer.lock
-/vendor/
 
 # Local configs
 config/autoload/*local.php
 
 # Binary gettext files
 *.po
-
-# ZF1
-extras/documentation
-
-#############################
-# Yii Framework Ignore List #
-#############################
-/alice/alice/protected/runtime/*
 
 ###########################
 # Build, Cache, Logs etc. #
@@ -128,171 +113,13 @@ logs/*.log
 temp/*
 tmp/*
 
-################################################################################
-######################### Jabong Portal ignored paths ##########################
-################################################################################
-
-#####################
-# Alice Ignore List #
-#####################
-/alice/alice/protected/config/dev.php
-/alice/alice/protected/config/config.php
-/alice/alice/public/gc_serverobj.properties
-
-# Alice Webroot: Risky Files should never be exposed.
-/alice/alice/public/apc.php
-/alice/alice/public/dummy.php
-/alice/alice/public/test.php
-/alice/alice/public/phpinfo.php
-/alice/alice/public/catalogSitemap*.xml
-/alice/alice/public/productSitemap*.xml
-
-# Alice Test Framework
-/alice/alice/test/log/*
-/alice/alice/test/phpunit_local.xml
-/alice/alice/test/Copy of phpunit_local.xml
-/alice/alice/test/phpunit_local_data.xml
-/alice/alice/test/phpunit_data.bat
-/alice/alice/test/phpunit.xml
-/alice/alice/test/build.xml
-/alice/alice/test/build/*
-/alice/alice/test/functional/phpunit.xml
-/alice/alice/test/functional/config/selenium_test.ini
-
-/alice/alice/tmp/*
-
-###################
-# Bob Ignore List #
-###################
-/bob/application/configs/automatedtests.ini
-/bob/application/configs/dev.ini
-/bob/application/configs/log.php
-/bob/data/upload/menu/
-###################################################
-# Risky Files should never be exposed in Webroot. #
-###################################################
-/bob/public/test.php
-/bob/public/phpinfo.php
-/bob/public/dummy.php
-
-########################################################
-# DB Class for Keyvalue table should not be committed. #
-########################################################
-/bob/application/common/DbTable/Keyvalue*.php
-
-####################
-# Bob Data Folders #
-####################
-/bob/data/logs/*.log
-/bob/data/logs/coverage
-/bob/data/cache/*
-/bob/data/locks/*
-/bob/data/dump.dmp
-/bob/data/export*
-/bob/data/brand/*
-/bob/data/product/*
-/bob/data/catalog/*
-/bob/data/import/*
-/bob/data/cms/*
-/bob/data/db-change-sets/*
-/bob/data/campaign/*
-
-########################################
-# Media Files for Catalog and Products #
-########################################
-/bob/data/media/catalog/*
-/bob/data/media/product/*
-/bob/data/media/sizechart/*
-
-#########################
-# CSV Files for Prudsys #
-#########################
-/bob/data/prudsys/*.csv
-
-######################
-# Bob Session files. #
-######################
-/bob/data/session/sess_*
-
-###################
-# Bob Upload data #
-###################
-/bob/data/upload/csv/*
-/bob/data/upload/tmp/*
-/bob/data/upload/import/*
-
-##########################
-# Bob Volatile JS Files. #
-##########################
-/bob/public/volatile/*.js
-
-# 
-/bob/tests/integration/%invoices.save_path%
-
-############################
-# Payment site Ignore List #
-############################
-/payment_jabong/includes/config.inc.php
-/payment_jabong/exception.log
-/payment_jabong/logs/*
-
-##############################
-# Shared Library Ignore List #
-##############################
-/shared/data/locks/*
-/shared/data/invoices/customers/*
-/shared/data/invoices/merchants/*
-/shared/data/import/create/*
-/shared/data/import/delete/*
-/shared/data/import/stock/*
-/shared/data/import/update/*
-/shared/data/csv_import/bob/*
-/shared/data/csv_import/conny/*
-
-####################
-# Root Data Folder #
-####################
-/data/*
-
-####################
-# Solr Ignore List #
-####################
-/solr/app/logs/*.log
-/solr/app/data/*
-/solr/app/ROOT/*
-/solr5/server/logs/*
-/solr5/server/solr/discovery/data/*
-########################
-# Solr 4.6 Ignore List #
-########################
-/solr2/logs/*
-/solr2/solr/collection1/data/*
-/solr2/solr-webapp/
-
-###############################
-# Attribute Setup Ignore List #
-###############################
-/tools/attribute-setup/csv/*.csv
-/tools/attribute-setup/data/*.sql
-/tools/attribute-setup/settings/localSettings.php
-
-##########################
-# Deployment Ignore List #
-##########################
-/tools/deploy/settings.mk
-
-###############################
-# Release Manager Ignore List #
-###############################
-/tools/RM/public/files/*
-/tools/RM/actions/test.txt
-
 ###############################
 # Ignore files in target dir #
 ###############################
 
 target/
 .classpath
+dbconnection.properties
 
 #####################
 # End of .gitignore #
