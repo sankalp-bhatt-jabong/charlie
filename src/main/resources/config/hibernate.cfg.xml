@@ -8,6 +8,6 @@
 		<mapping resource="BundleSet.hbm.xml" />
 		<mapping resource="BundleSetOptions.hbm.xml" />
 		<mapping resource="SkuBundleMessages.hbm.xml" />
-        <mapping resource="Voucher.hbm.xml"/>
+		<mapping resource="Voucher.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
