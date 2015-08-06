@@ -46,7 +46,8 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("Paymentmethod")) {
-			if (result.get("Paymentmethod").equals(false)) {
+			if (result.get("Paymentmethod").equals(false) || result.get("Paymentmethod").equals("")
+					|| result.get("Paymentmethod").equals("0")) {
 				this.setPaymentMethod(Collections.emptyMap());
 			} else {
 				this.setPaymentMethod((Map) result.get("Paymentmethod"));
@@ -58,7 +59,8 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("Bundle")) {
-			if (result.get("Bundle").equals(false)) {
+			if (result.get("Bundle").equals(false) ||result.get("Bundle").equals("0")
+					|| result.get("Bundle").equals("")) {
 				this.setBundle(Collections.emptyMap());
 			} else {
 				this.setBundle((Map) result.get("Bundle"));
@@ -67,7 +69,8 @@ public class ConditionsRuleSet {
 
 		if (result.containsKey("Discounted")) {
 			int value;
-			if ((result.get("Discounted").equals(false))) {
+			if (result.get("Discounted").equals(false) || result.get("Discounted").equals("0")
+					|| result.get("Discounted").equals("")) {
 				value = 0;
 			} else {
 				value = Integer.parseInt((String) result.get("Discounted"));
@@ -78,7 +81,8 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("CapOnDiscount")) {
-			if (result.get("CapOnDiscount").equals(false)) {
+			if (result.get("CapOnDiscount").equals(false) || result.get("CapOnDiscount").equals("")
+					|| result.get("CapOnDiscount").equals("0")) {
 				this.setCapOnDiscount(Collections.emptyMap());
 			} else {
 				this.setCapOnDiscount((Map) result.get("CapOnDiscount"));
@@ -86,7 +90,8 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("ItemAttribute")) {
-			if (result.get("ItemAttribute").equals(false)) {
+			if (result.get("ItemAttribute").equals(false) || result.get("ItemAttribute").equals("")
+					|| result.get("ItemAttribute").equals("0")) {
 				this.setItemAttribute(Collections.emptyMap());
 			} else {
 				this.setItemAttribute((Map) result.get("ItemAttribute"));
@@ -120,7 +125,8 @@ public class ConditionsRuleSet {
 
 		if (result.containsKey("DiscountedItem")) {
 			int value;
-			if ((result.get("DiscountedItem").equals(false))) {
+			if (result.get("DiscountedItem").equals(false) || result.get("DiscountedItem").equals("")
+					|| result.get("DiscountedItem").equals("0")) {
 				value = 0;
 			} else {
 				value = Integer.parseInt((String) result.get("DiscountedItem"));
@@ -132,7 +138,8 @@ public class ConditionsRuleSet {
 
 		if (result.containsKey("Subtotal")) {
 			int value;
-			if ((result.get("Subtotal").equals(false))) {
+			if (result.get("Subtotal").equals(false) || result.get("Subtotal").equals("0")
+					|| result.get("Subtotal").equals("")) {
 				value = 0;
 			} else {
 				value = Integer.parseInt((String) result.get("Subtotal"));
