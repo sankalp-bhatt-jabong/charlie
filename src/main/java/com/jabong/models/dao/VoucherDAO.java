@@ -1,9 +1,7 @@
 package com.jabong.models.dao;
 
 import java.util.List;
-
 import com.jabong.models.Voucher;
-
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,20 +16,9 @@ public class VoucherDAO {
 	@Transactional
 	public Voucher getDetailById(int id) {
 		@SuppressWarnings("unchecked")
-		
 		Voucher vouchers = (Voucher) sessionFactory.getCurrentSession()
-				.createQuery("from Voucher V where V.id=:id").setParameter("id",id).uniqueResult();
-
-		return vouchers;
-	}
-	
-	@Transactional
-	public List<Voucher> activeList() {
-		@SuppressWarnings("unchecked")
-		
-		List<Voucher> vouchers = (List<Voucher>) sessionFactory.getCurrentSession()
-				.createCriteria(Voucher.class)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+				.createQuery("from Voucher V where V.id=:id")
+				.setParameter("id", id).uniqueResult();
 
 		return vouchers;
 	}

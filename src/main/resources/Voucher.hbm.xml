@@ -8,7 +8,7 @@
 			<generator class="native" />
 		</id>
 		<property name="name" column="name" />
-	    <property name="codePrefix" column="code_prefix" />
+		<property name="codePrefix" column="code_prefix" />
 		<property name="fkDepartmentId" column="fk_department_id" />
 		<property name="fkAclUser" column="fk_acl_user" />
 		<property name="description" column="description" />

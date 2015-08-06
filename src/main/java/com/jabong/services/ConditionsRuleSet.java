@@ -4,19 +4,19 @@ import java.util.Collections;
 import java.util.Map;
 
 public class ConditionsRuleSet {
-	private int Subtotal;
-	private Map Category;
+	private int subTotal;
+	private Map category;
 	private String customer;
 	private Map paymentMethod;
 	private Map capOnDiscount;
-	private Map SkuExclude;
-	private int DiscountedItem;
+	private Map skuExclude;
+	private int discountedItem;
 	private int discounted;
-	private Map TaggedItem;
-	private Map SegmentedVoucher;
+	private Map taggedItem;
+	private Map segmentedVoucher;
 	private Map bundle;
 	private Map brand;
-	private Map MobileVoucher;
+	private Map mobileVoucher;
 	private Map itemAttribute;
 
 	public ConditionsRuleSet() {
@@ -46,7 +46,8 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("Paymentmethod")) {
-			if (result.get("Paymentmethod").equals(false) || result.get("Paymentmethod").equals("")
+			if (result.get("Paymentmethod").equals(false)
+					|| result.get("Paymentmethod").equals("")
 					|| result.get("Paymentmethod").equals("0")) {
 				this.setPaymentMethod(Collections.emptyMap());
 			} else {
@@ -59,7 +60,8 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("Bundle")) {
-			if (result.get("Bundle").equals(false) ||result.get("Bundle").equals("0")
+			if (result.get("Bundle").equals(false)
+					|| result.get("Bundle").equals("0")
 					|| result.get("Bundle").equals("")) {
 				this.setBundle(Collections.emptyMap());
 			} else {
@@ -69,19 +71,20 @@ public class ConditionsRuleSet {
 
 		if (result.containsKey("Discounted")) {
 			int value;
-			if (result.get("Discounted").equals(false) || result.get("Discounted").equals("0")
+			if (result.get("Discounted").equals(false)
+					|| result.get("Discounted").equals("0")
 					|| result.get("Discounted").equals("")) {
 				value = 0;
 			} else {
 				value = Integer.parseInt((String) result.get("Discounted"));
 			}
-			// int i =(Boolean) result.get("DiscountedItem") ?
-			// (Integer)result.get("DiscountedItem") : 0;
+
 			this.setDiscounted(value);
 		}
 
 		if (result.containsKey("CapOnDiscount")) {
-			if (result.get("CapOnDiscount").equals(false) || result.get("CapOnDiscount").equals("")
+			if (result.get("CapOnDiscount").equals(false)
+					|| result.get("CapOnDiscount").equals("")
 					|| result.get("CapOnDiscount").equals("0")) {
 				this.setCapOnDiscount(Collections.emptyMap());
 			} else {
@@ -90,7 +93,8 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("ItemAttribute")) {
-			if (result.get("ItemAttribute").equals(false) || result.get("ItemAttribute").equals("")
+			if (result.get("ItemAttribute").equals(false)
+					|| result.get("ItemAttribute").equals("")
 					|| result.get("ItemAttribute").equals("0")) {
 				this.setItemAttribute(Collections.emptyMap());
 			} else {
@@ -125,43 +129,44 @@ public class ConditionsRuleSet {
 
 		if (result.containsKey("DiscountedItem")) {
 			int value;
-			if (result.get("DiscountedItem").equals(false) || result.get("DiscountedItem").equals("")
+			if (result.get("DiscountedItem").equals(false)
+					|| result.get("DiscountedItem").equals("")
 					|| result.get("DiscountedItem").equals("0")) {
 				value = 0;
 			} else {
 				value = Integer.parseInt((String) result.get("DiscountedItem"));
 			}
-			// int i =(Boolean) result.get("DiscountedItem") ?
-			// (Integer)result.get("DiscountedItem") : 0;
+
 			this.setDiscountedItem(value);
 		}
 
 		if (result.containsKey("Subtotal")) {
 			int value;
-			if (result.get("Subtotal").equals(false) || result.get("Subtotal").equals("0")
+			if (result.get("Subtotal").equals(false)
+					|| result.get("Subtotal").equals("0")
 					|| result.get("Subtotal").equals("")) {
 				value = 0;
 			} else {
 				value = Integer.parseInt((String) result.get("Subtotal"));
 			}
-			this.setSubtotal(value);
+			this.setSubTotal(value);
 		}
 	}
 
-	public int getSubtotal() {
-		return Subtotal;
+	public int getSubTotal() {
+		return subTotal;
 	}
 
-	public void setSubtotal(int subtotal) {
-		Subtotal = subtotal;
+	public void setSubTotal(int subTotal) {
+		this.subTotal = subTotal;
 	}
 
 	public Map getCategory() {
-		return Category;
+		return category;
 	}
 
 	public void setCategory(Map category) {
-		Category = category;
+		this.category = category;
 	}
 
 	public String getCustomer() {
@@ -189,19 +194,19 @@ public class ConditionsRuleSet {
 	}
 
 	public Map getSkuExclude() {
-		return SkuExclude;
+		return skuExclude;
 	}
 
 	public void setSkuExclude(Map skuExclude) {
-		SkuExclude = skuExclude;
+		this.skuExclude = skuExclude;
 	}
 
 	public int getDiscountedItem() {
-		return DiscountedItem;
+		return discountedItem;
 	}
 
 	public void setDiscountedItem(int discountedItem) {
-		DiscountedItem = discountedItem;
+		this.discountedItem = discountedItem;
 	}
 
 	public int getDiscounted() {
@@ -213,19 +218,19 @@ public class ConditionsRuleSet {
 	}
 
 	public Map getTaggedItem() {
-		return TaggedItem;
+		return taggedItem;
 	}
 
 	public void setTaggedItem(Map taggedItem) {
-		TaggedItem = taggedItem;
+		this.taggedItem = taggedItem;
 	}
 
 	public Map getSegmentedVoucher() {
-		return SegmentedVoucher;
+		return segmentedVoucher;
 	}
 
 	public void setSegmentedVoucher(Map segmentedVoucher) {
-		SegmentedVoucher = segmentedVoucher;
+		this.segmentedVoucher = segmentedVoucher;
 	}
 
 	public Map getBundle() {
@@ -237,11 +242,11 @@ public class ConditionsRuleSet {
 	}
 
 	public Map getMobileVoucher() {
-		return MobileVoucher;
+		return mobileVoucher;
 	}
 
 	public void setMobileVoucher(Map mobileVoucher) {
-		MobileVoucher = mobileVoucher;
+		this.mobileVoucher = mobileVoucher;
 	}
 
 	public Map getBrand() {

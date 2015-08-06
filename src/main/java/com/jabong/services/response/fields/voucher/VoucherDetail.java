@@ -6,33 +6,6 @@ public class VoucherDetail {
 	private String discount_type;
 	private Float discount_percentage;
 	private Float discount_amount_default;
-	private String mobilevoucher_app;
-	private String mobilevoucher_site;
-	private String mobilevoucher_desktop;
-
-	public String getMobilevoucher_app() {
-		return mobilevoucher_app;
-	}
-
-	public void setMobilevoucher_app(String mobilevoucher_app) {
-		this.mobilevoucher_app = mobilevoucher_app;
-	}
-
-	public String getMobilevoucher_site() {
-		return mobilevoucher_site;
-	}
-
-	public void setMobilevoucher_site(String mobilevoucher_site) {
-		this.mobilevoucher_site = mobilevoucher_site;
-	}
-
-	public String getMobilevoucher_desktop() {
-		return mobilevoucher_desktop;
-	}
-
-	public void setMobilevoucher_desktop(String mobilevoucher_desktop) {
-		this.mobilevoucher_desktop = mobilevoucher_desktop;
-	}
 
 	public int getId_sales_rule_set() {
 		return id_sales_rule_set;
@@ -73,6 +46,5 @@ public class VoucherDetail {
 	public void setDiscount_amount_default(Float discount_amount_default) {
 		this.discount_amount_default = discount_amount_default;
 	}
-	
-	
+
 }
