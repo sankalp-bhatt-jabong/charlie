@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jabong.models">
+	<class name="Voucher" table="sales_rule_set">
+		<id name="id" column="id_sales_rule_set">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" />
+		<property name="codePrefix" column="code_prefix" />
+		<property name="fkDepartmentId" column="fk_department_id" />
+		<property name="fkAclUser" column="fk_acl_user" />
+		<property name="description" column="description" />
+		<property name="isActive" column="is_active" />
+		<property name="discountAmountDefault" column="discount_amount_default" />
+		<property name="fkSalesRuleSetRefund" column="fk_sales_rule_set_refund" />
+		<property name="durationInDays" column="duration_in_days" />
+		<property name="usageLimit" column="usage_limit" />
+		<property name="type" column="type" />
+		<property name="fkSalesRuleSubtype" column="fk_sales_rule_subtype" />
+		<property name="fkSalesRuleCampaign" column="fk_sales_rule_campaign" />
+		<property name="isRefundable" column="is_refundable" />
+		<property name="discountType" column="discount_type" />
+		<property name="discountPercentage" column="discount_percentage" />
+		<property name="applyToShipping" column="apply_to_shipping" />
+		<property name="conditionsRuleset" column="conditions_ruleset" />
+		<property name="codeLength" column="code_length" />
+		<property name="bankName" column="bank_name" />
+		<property name="offerCode" column="offer_code" />
+		<property name="isDefaultMessageEnabled" column="is_default_message_enabled" />
+		<property name="messages" column="messages" />
+		<property name="voucherMode" column="voucher_mode" />
+		<property name="modeOfDiscountAmount" column="mode_of_discount_amount" />
+		<property name="modeOfPaymentAmount" column="mode_of_payment_amount" />
+		<property name="ip" column="ip" />
+		<property name="showOnWebsite" column="show_on_website" />
+		<property name="showSegmentedOnWebsite" column="show_segmented_on_website" />
+		<property name="fkSystemDevice" column="fk_system_device" />
+		<property name="domain" column="domain" />
+	</class>
+</hibernate-mapping>
