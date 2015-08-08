@@ -23,4 +23,28 @@ public class VoucherDAO {
 		return vouchers;
 	}
 
+	@Transactional
+	public List<Object> getActiveList() {
+		@SuppressWarnings("unchecked")
+		List<Object> vouchers = (List<Object>) sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"SELECT V.id, V.conditionsRuleset from Voucher V where V.showOnWebsite=1")
+				.list();
+
+		return vouchers;
+	}
+
+	@Transactional
+	public String getSalesRuleData(int id) {
+		@SuppressWarnings("unchecked")
+		String voucherCode = (String) sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"SELECT vsr.code from VoucherSalesRule vsr where vsr.fkSalesRuleSet =:id")
+				.setParameter("id", id).uniqueResult();
+
+		return voucherCode;
+	}
+
 }
