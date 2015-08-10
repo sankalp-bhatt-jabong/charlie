@@ -29,7 +29,7 @@ public class VoucherDAO {
 		List<Object> vouchers = (List<Object>) sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"SELECT V.id, V.conditionsRuleset from Voucher V where V.showOnWebsite=1")
+						"SELECT V.id, V.conditionsRuleset from Voucher V where V.showOnWebsite = 1 AND V.isActive = 1")
 				.list();
 
 		return vouchers;
