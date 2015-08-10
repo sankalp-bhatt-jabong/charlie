@@ -4,15 +4,19 @@ import java.util.List;
 
 import com.jabong.models.Bundle;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 
 public class BundleDAO extends BaseDAO {
+	final static Logger logger = Logger.getLogger(BundleDAO.class);
+	
 	private SessionFactory sessionFactory;
 
 	public BundleDAO(SessionFactory sessionFactory) {
@@ -73,6 +77,18 @@ public class BundleDAO extends BaseDAO {
 				.setString("from_date", BundleDAO.getCurrentDate());
 		List<?> res = query.list();
 		return res;
+	}
+	
+	@Async
+	@Transactional
+	public void asyncit() {
+		try {
+			Thread.sleep(100); //100 seconds
+			
+			this.getReverseSkuBundleMap();
+		} catch(Exception e) {
+			logger.error("Sorry, something wrong!", e);
+		}
 	}
 
 }

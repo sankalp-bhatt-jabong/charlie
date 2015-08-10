@@ -1,15 +1,21 @@
 package com.jabong.controllers;
 
 import java.util.*;
+
 import org.apache.commons.lang3.StringUtils;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.jabong.controllers.AppController;
 import com.jabong.models.Bundle;
 import com.jabong.models.dao.BundleDAO;
+import com.jabong.services.JabongBus;
 import com.jabong.services.response.BaseResponse;
 import com.jabong.services.response.BundleDetailResponse;
 import com.jabong.services.response.BundleListResponse;
@@ -28,6 +34,9 @@ public class BundleController extends AppController {
 
 	@Autowired
 	private BundleDAO bundleDao;
+	
+	@Autowired
+	private JabongBus jabongBus;
 
 	@RequestMapping("/list")
 	public @ResponseBody BaseResponse list() throws Exception {
@@ -71,4 +80,21 @@ public class BundleController extends AppController {
 		response = new Sku2BundleMapResponse(rowsList);
 		return response;
 	}
+	
+	@RequestMapping("/test")
+	public @ResponseBody Object test() {
+		BaseResponse response = new BaseResponse();
+		jabongBus.publish();
+		
+		//bundleDao.getReverseSkuBundleMap();
+		return response;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
