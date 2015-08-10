@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.jabong.models.dao.BaseDAO;
 import com.jabong.models.dao.VoucherDAO;
 import com.jabong.services.ConditionsRuleSet;
 import com.jabong.services.response.BaseResponse;
@@ -21,6 +22,7 @@ public class VoucherListResponse extends BaseResponse {
 			NoSuchMethodException {
 		HashMap<String, Object> promotionVoucherDetail = new HashMap();
 		Iterator i = (Iterator) vouchers.iterator();
+		
 		while (i.hasNext()) {
 			Object[] obj = (Object[]) i.next();
 			int id = (Integer) obj[0];
@@ -37,12 +39,11 @@ public class VoucherListResponse extends BaseResponse {
 								.getSalesRuleData(id);
 						if (salesRuleData != null && salesRuleData.length != 0) {
 							fields.setId_sales_rule_set(id);
-							// String code = (String)salesRuleData[0];
 							fields.setVoucher_code((String) salesRuleData[0]);
-							fields.setFrom_date(salesRuleData[1].toString()
-									.replaceAll("\\.\\d+", ""));
-							fields.setTo_date(salesRuleData[2].toString()
-									.replaceAll("\\.\\d+", ""));
+							String fromDate = BaseDAO.getDateTime(salesRuleData[1].toString());
+							fields.setFrom_date(fromDate);
+							String toDate = BaseDAO.getDateTime(salesRuleData[2].toString());
+							fields.setTo_date(toDate);
 							int key1 = Integer.parseInt((String) taggedItem
 									.get("tagvalue"));
 							String key = voucherDao.mapToTagValue(key1);
