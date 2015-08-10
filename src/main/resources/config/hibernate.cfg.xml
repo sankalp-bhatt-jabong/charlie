@@ -10,5 +10,6 @@
 		<mapping resource="SkuBundleMessages.hbm.xml" />
 		<mapping resource="Voucher.hbm.xml" />
 		<mapping resource="VoucherSalesRule.hbm.xml" />
+		<mapping resource="PromotionOptions.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

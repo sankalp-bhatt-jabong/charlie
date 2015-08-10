@@ -36,15 +36,27 @@ public class VoucherDAO {
 	}
 
 	@Transactional
-	public String getSalesRuleData(int id) {
+	public Object getSalesRuleData(int id) {
 		@SuppressWarnings("unchecked")
-		String voucherCode = (String) sessionFactory
+		Object voucherCode = (Object) sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"SELECT vsr.code from VoucherSalesRule vsr where vsr.fkSalesRuleSet =:id")
+						"SELECT vsr.code, vsr.fromDate, vsr.toDate from VoucherSalesRule vsr where vsr.fkSalesRuleSet =:id")
 				.setParameter("id", id).uniqueResult();
 
 		return voucherCode;
+	}
+	
+	@Transactional
+	public String mapToTagValue(int id) {
+		@SuppressWarnings("unchecked")
+		String promoName = (String) sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"SELECT po.name from PromotionOptions po where po.id =:id")
+				.setParameter("id", id).uniqueResult();
+
+		return promoName;
 	}
 
 }
