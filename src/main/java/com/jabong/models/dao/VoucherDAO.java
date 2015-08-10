@@ -6,7 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-public class VoucherDAO {
+public class VoucherDAO extends BaseDAO {
 	private SessionFactory sessionFactory;
 
 	public VoucherDAO(SessionFactory sessionFactory) {
@@ -41,12 +41,16 @@ public class VoucherDAO {
 		Object voucherCode = (Object) sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"SELECT vsr.code, vsr.fromDate, vsr.toDate from VoucherSalesRule vsr where vsr.fkSalesRuleSet =:id")
-				.setParameter("id", id).uniqueResult();
+						"SELECT vsr.code, vsr.fromDate, vsr.toDate from VoucherSalesRule vsr "
+						+ "where vsr.fkSalesRuleSet =:id and vsr.fromDate <= :currentDate "
+						+ "and  vsr.toDate >= :currentDate")
+				.setParameter("id", id)
+				.setParameter("currentDate", VoucherDAO.getCurrentDate()).uniqueResult();
+
 
 		return voucherCode;
 	}
-	
+
 	@Transactional
 	public String mapToTagValue(int id) {
 		@SuppressWarnings("unchecked")
