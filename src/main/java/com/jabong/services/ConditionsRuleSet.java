@@ -3,6 +3,8 @@ package com.jabong.services;
 import java.util.Collections;
 import java.util.Map;
 
+import com.jabong.services.util.StringUtil;
+
 public class ConditionsRuleSet {
 	private int subTotal;
 	private Map category;
@@ -46,10 +48,11 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("Paymentmethod")) {
-			if (testCondition(result, "Paymentmethod")) {
+			Object attributeValue = result.get("Paymentmethod");
+			if (StringUtil.empty(attributeValue)) {
 				this.setPaymentMethod(Collections.emptyMap());
 			} else {
-				this.setPaymentMethod((Map) result.get("Paymentmethod"));
+				this.setPaymentMethod((Map) attributeValue);
 			}
 		}
 
@@ -58,37 +61,42 @@ public class ConditionsRuleSet {
 		}
 
 		if (result.containsKey("Bundle")) {
-			if (testCondition(result, "Bundle")) {
+			Object attributeValue = result.get("Bundle");
+			if (StringUtil.empty(attributeValue)) {
 				this.setBundle(Collections.emptyMap());
 			} else {
-				this.setBundle((Map) result.get("Bundle"));
+				this.setBundle((Map) attributeValue);
 			}
 		}
 
 		if (result.containsKey("Discounted")) {
 			int value;
-			if (testCondition(result, "Discounted")) {
+			Object attributeValue = result.get("Discounted");
+			if (StringUtil.empty(attributeValue)) {
 				value = 0;
 			} else {
-				value = Integer.parseInt((String) result.get("Discounted"));
+				value = Integer.parseInt((String) attributeValue);
 			}
 
 			this.setDiscounted(value);
 		}
 
 		if (result.containsKey("CapOnDiscount")) {
-			if (testCondition(result, "CapOnDiscount")) {
+			Object attributeValue = result.get("CapOnDiscount");
+			if (StringUtil.empty(attributeValue)) {
 				this.setCapOnDiscount(Collections.emptyMap());
 			} else {
-				this.setCapOnDiscount((Map) result.get("CapOnDiscount"));
+				this.setCapOnDiscount((Map) attributeValue);
 			}
 		}
 
 		if (result.containsKey("ItemAttribute")) {
-			if (testCondition(result, "ItemAttribute")) {
+
+			Object attributeValue = result.get("ItemAttribute");
+			if (StringUtil.empty(attributeValue)) {
 				this.setItemAttribute(Collections.emptyMap());
 			} else {
-				this.setItemAttribute((Map) result.get("ItemAttribute"));
+				this.setItemAttribute((Map) attributeValue);
 			}
 		}
 
@@ -119,10 +127,11 @@ public class ConditionsRuleSet {
 
 		if (result.containsKey("DiscountedItem")) {
 			int value;
-			if (testCondition(result, "DiscountedItem")) {
+			Object attributeValue = result.get("DiscountedItem");
+			if (StringUtil.empty(attributeValue)) {
 				value = 0;
 			} else {
-				value = Integer.parseInt((String) result.get("DiscountedItem"));
+				value = Integer.parseInt((String) attributeValue);
 			}
 
 			this.setDiscountedItem(value);
@@ -130,11 +139,13 @@ public class ConditionsRuleSet {
 
 		if (result.containsKey("Subtotal")) {
 			int value;
-			if (testCondition(result, "Subtotal")) {
+			Object attributeValue = result.get("Subtotal");
+			if (StringUtil.empty(attributeValue)) {
 				value = 0;
 			} else {
-				value = Integer.parseInt((String) result.get("Subtotal"));
+				value = Integer.parseInt((String) attributeValue);
 			}
+
 			this.setSubTotal(value);
 		}
 	}
@@ -251,21 +262,5 @@ public class ConditionsRuleSet {
 		this.itemAttribute = itemAttribute;
 	}
 
-	/**
-	 * test the value of attribute
-	 * 
-	 * @param result
-	 * @param attribute
-	 * @return boolean
-	 */
-	public static boolean testCondition(Map result, String attribute) {
-		boolean test = false;
-		if (result.get(attribute).equals(false)
-				|| result.get(attribute).equals("")
-				|| result.get(attribute).equals("0")) {
-			test = true;
-		}
-		return test;
-	}
 
 }

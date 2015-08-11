@@ -34,17 +34,17 @@ public class VoucherController extends AppController {
 
 	@RequestMapping("/detail")
 	public @ResponseBody BaseResponse detail(@RequestParam(value = "id") int id)
-			throws IllegalAccessException, InvocationTargetException,
-			NoSuchMethodException {
+			throws Exception {
 		Voucher voucher = voucherDao.getDetailById(id);
+		if (voucher == null) {
+			throw new Exception("voucher Not Found.");
+		}
 		BaseResponse response = new VoucherResponse(voucher);
 		return response;
 	}
 
-	@RequestMapping("/activeList")
-	public @ResponseBody BaseResponse activeList()
-			throws IllegalAccessException, InvocationTargetException,
-			NoSuchMethodException {
+	@RequestMapping("/list")
+	public @ResponseBody BaseResponse list() throws Exception {
 		List<Object> vouchers = voucherDao.getActiveList();
 		BaseResponse response = new VoucherListResponse(vouchers, voucherDao);
 		return response;

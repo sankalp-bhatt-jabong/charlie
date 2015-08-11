@@ -1,7 +1,10 @@
 package com.jabong.models.dao;
 
 import java.util.List;
+
 import com.jabong.models.Voucher;
+import com.jabong.services.util.DateUtil;
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +18,6 @@ public class VoucherDAO extends BaseDAO {
 
 	@Transactional
 	public Voucher getDetailById(int id) {
-		@SuppressWarnings("unchecked")
 		Voucher vouchers = (Voucher) sessionFactory.getCurrentSession()
 				.createQuery("from Voucher V where V.id=:id")
 				.setParameter("id", id).uniqueResult();
@@ -26,10 +28,9 @@ public class VoucherDAO extends BaseDAO {
 	@Transactional
 	public List<Object> getActiveList() {
 		@SuppressWarnings("unchecked")
-		List<Object> vouchers = (List<Object>) sessionFactory
-				.getCurrentSession()
-				.createQuery(
-						"SELECT V.id, V.conditionsRuleset from Voucher V where V.showOnWebsite = 1 AND V.isActive = 1")
+		List<Object> vouchers = (List<Object>) sessionFactory.getCurrentSession()
+				.createQuery("SELECT V.id, V.conditionsRuleset from Voucher V where"
+						+ " V.showOnWebsite = 1 AND V.isActive = 1")
 				.list();
 
 		return vouchers;
@@ -37,15 +38,12 @@ public class VoucherDAO extends BaseDAO {
 
 	@Transactional
 	public Object getSalesRuleData(int id) {
-		@SuppressWarnings("unchecked")
-		Object voucherCode = (Object) sessionFactory
-				.getCurrentSession()
-				.createQuery(
-						"SELECT vsr.code, vsr.fromDate, vsr.toDate from VoucherSalesRule vsr "
+		Object voucherCode = (Object) sessionFactory.getCurrentSession()
+				.createQuery("SELECT vsr.code, vsr.fromDate, vsr.toDate from VoucherSalesRule vsr "
 						+ "where vsr.fkSalesRuleSet =:id and vsr.fromDate <= :currentDate "
 						+ "and  vsr.toDate >= :currentDate")
 				.setParameter("id", id)
-				.setParameter("currentDate", VoucherDAO.getCurrentDate()).uniqueResult();
+				.setParameter("currentDate", DateUtil.getCurrentDate()).uniqueResult();
 
 
 		return voucherCode;
@@ -56,8 +54,7 @@ public class VoucherDAO extends BaseDAO {
 		@SuppressWarnings("unchecked")
 		String promoName = (String) sessionFactory
 				.getCurrentSession()
-				.createQuery(
-						"SELECT po.name from PromotionOptions po where po.id =:id")
+				.createQuery("SELECT po.name from PromotionOptions po where po.id =:id")
 				.setParameter("id", id).uniqueResult();
 
 		return promoName;
