@@ -3,6 +3,7 @@ package com.jabong.controllers;
 import java.util.*;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,7 +37,6 @@ public class BundleController extends AppController {
 	@Autowired
 	private BundleDAO bundleDao;
 	
-	private JabongBus jabongBus;
 
 	@RequestMapping("/list")
 	public @ResponseBody BaseResponse list() throws Exception {
@@ -84,9 +84,10 @@ public class BundleController extends AppController {
 	@RequestMapping("/test")
 	public @ResponseBody Object test() {
 		BaseResponse response = new BaseResponse();
+		//Logger.getLogger(BundleController.class).error("sfdsfsf");
 		//jabongBus.publish();
 		SeaLogger.getInstance()
-		.getLogger(BundleController.class).debug("hey there");
+		.getExceptionLogger().error("hey there");
 		//bundleDao.getReverseSkuBundleMap();
 		return response;
 	}

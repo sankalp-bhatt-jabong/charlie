@@ -1,7 +1,9 @@
 package com.jabong.services.util;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PatternLayout;
 import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.RollingFileAppender;
 
 public class SeaLogger {
 
@@ -20,8 +22,8 @@ public class SeaLogger {
     	return sealogger;
     }
     
-    public Logger getLogger(Class<?> className) {
-    	return Logger.getLogger(className);
+    public Logger getExceptionLogger() {
+    	return Logger.getLogger("EXCEPTION");
     }
 	
 }
