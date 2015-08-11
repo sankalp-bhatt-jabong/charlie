@@ -72,6 +72,8 @@
 	    </constructor-arg>
 	</bean>
 	
-	<bean id="jabongBus" class="com.jabong.services.JabongBus"></bean>
+	<bean id="bundleNotify" class="com.jabong.services.notification.BundleNotify">
+		<property name="bundleDao" ref="bundleDao" />
+	</bean>
 	 	
 </beans>

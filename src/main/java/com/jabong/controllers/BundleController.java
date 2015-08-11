@@ -21,6 +21,7 @@ import com.jabong.services.response.BundleDetailResponse;
 import com.jabong.services.response.BundleListResponse;
 import com.jabong.services.response.BundlesOfSkuResponse;
 import com.jabong.services.response.Sku2BundleMapResponse;
+import com.jabong.services.util.SeaLogger;
 
 /**
  * Handles requests for the application home page.
@@ -35,7 +36,6 @@ public class BundleController extends AppController {
 	@Autowired
 	private BundleDAO bundleDao;
 	
-	@Autowired
 	private JabongBus jabongBus;
 
 	@RequestMapping("/list")
@@ -84,8 +84,9 @@ public class BundleController extends AppController {
 	@RequestMapping("/test")
 	public @ResponseBody Object test() {
 		BaseResponse response = new BaseResponse();
-		jabongBus.publish();
-		
+		//jabongBus.publish();
+		SeaLogger.getInstance()
+		.getLogger(BundleController.class).debug("hey there");
 		//bundleDao.getReverseSkuBundleMap();
 		return response;
 	}

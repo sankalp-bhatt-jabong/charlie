@@ -8,29 +8,79 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.jabong.models.dao.BundleDAO;
+import com.jabong.services.util.ApplicationContextProvider;
 
-@Component
 public class JabongBus {
 
 	final static Logger logger = Logger.getLogger(JabongBus.class);
-	
-	static BundleDAO bundleDao;
-	
-	public static void setBundleDao() {
-		JabongBus.bundleDao = ApplicationContextProvider.getApplicationContext()
-		.getBean("bundleDao", BundleDAO.class);
-		logger.debug("Bundle dao set");
+
+	private String message_id;
+	private final String publisher_name = "promotions";
+	private String routing_key;
+	private String timestamp;
+	private String type;
+	private String type_of_change;
+	private Object promotions;
+
+	public String getMessageId() {
+		return message_id;
 	}
 
-	@Async
+	public void setMessageId(String message_id) {
+		this.message_id = message_id;
+	}
+
+	public String getRoutingKey() {
+		return routing_key;
+	}
+
+	public void setRoutingKey(String routing_key) {
+		this.routing_key = routing_key;
+	}
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getTypeOfChange() {
+		return type_of_change;
+	}
+
+	public void setTypeOfChange(String type_of_change) {
+		this.type_of_change = type_of_change;
+	}
+
+	public Object getData() {
+		return promotions;
+	}
+
+	public void setData(Object promotions) {
+		this.promotions = promotions;
+	}
+
+	public String getPublisher_name() {
+		return publisher_name;
+	}
+	
+	private void prePublish() {
+		
+	}
+
 	public void publish() {
-		JabongBus.setBundleDao();
-		try {
-			Thread.sleep(100000); // 100 seconds
-			bundleDao.getReverseSkuBundleMap();
-		} catch (Exception e) {
-			logger.error("Sorry, something wrong!", e);
-		}
+		this.prePublish();
+		//@todo add publish code with re-trial here.
 	}
 
 }
