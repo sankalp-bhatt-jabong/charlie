@@ -37,6 +37,7 @@ public class BundleController extends AppController {
 	@Autowired
 	private BundleDAO bundleDao;
 	
+	private SeaLogger log = SeaLogger.getInstance();
 
 	@RequestMapping("/list")
 	public @ResponseBody BaseResponse list() throws Exception {
@@ -86,8 +87,8 @@ public class BundleController extends AppController {
 		BaseResponse response = new BaseResponse();
 		//Logger.getLogger(BundleController.class).error("sfdsfsf");
 		//jabongBus.publish();
-		SeaLogger.getInstance()
-		.getExceptionLogger().error("hey there");
+		log.getUtilityLogger().debug("hey there");
+		log.getExceptionLogger().error("hey there");
 		//bundleDao.getReverseSkuBundleMap();
 		return response;
 	}
