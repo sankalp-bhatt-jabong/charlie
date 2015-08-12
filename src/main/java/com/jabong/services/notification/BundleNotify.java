@@ -33,13 +33,16 @@ public class BundleNotify {
 	
 	@Async
 	public void activeList() {
-		try {
-		Thread.sleep(10000);
+		
+		    JabongBusMessage jb = new JabongBusMessage();
+		    jb.setType("Bundle");
+		try { 
+		//Thread.sleep(10000);
 		List<Bundle> bundles = bundleDao.fetchActiveList();
 		BundleListResponse response = new BundleListResponse(bundles);
 		Object data = response.getData();
-		JabongBus jb = new JabongBus();
-		jb.setType("Bundle");
+		
+		
 		jb.setData(data);
 		jb.publish();
 		} catch (Exception e) {
