@@ -57,7 +57,7 @@ public class VoucherListResponse extends BaseResponse
                 throw new DataNotFoundException();
             }
             this.setData(promotionVoucherDetail);
-            this.setErrorCode(BaseResponse.No_EXCEPTION);
+            this.setErrorCode(BaseResponse.NO_EXCEPTION);
 
         } catch (DataNotFoundException e) {
             this.setData(e.getMessage());

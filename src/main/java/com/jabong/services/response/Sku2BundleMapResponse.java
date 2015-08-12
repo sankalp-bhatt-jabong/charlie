@@ -27,7 +27,7 @@ public class Sku2BundleMapResponse extends BaseResponse
                 throw new DataNotFoundException();
             }
             this.setData(response);
-            this.setErrorCode(BaseResponse.No_EXCEPTION);
+            this.setErrorCode(BaseResponse.NO_EXCEPTION);
         } catch (DataNotFoundException e) {
             this.setData(e.getMessage());
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);

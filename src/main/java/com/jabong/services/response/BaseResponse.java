@@ -3,20 +3,20 @@ package com.jabong.services.response;
 public class BaseResponse
 {
 
-    private int errorCode;
+    private int errorcode;
     private Object data;
-    public static final int No_EXCEPTION             = 0;
+    public static final int NO_EXCEPTION             = 0;
     public static final int DATA_NOT_FOUND_EXCEPTION = 1;
     public static final int OTHER_EXCEPTION          = 2;
 
     public int getErrorCode()
     {
-        return errorCode;
+        return errorcode;
     }
 
-    public void setErrorCode(int errorCode)
+    public void setErrorCode(int errorcode)
     {
-        this.errorCode = errorCode;
+        this.errorcode = errorcode;
     }
 
     public Object getData()

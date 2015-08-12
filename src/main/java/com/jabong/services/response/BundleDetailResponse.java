@@ -39,7 +39,7 @@ public class BundleDetailResponse extends BaseResponse
             dFields.setAction_serialized(bundle.getActionSerialized());
             dFields.setSets(this.prepareSetList(bundle));
             dFields.setSkus_in_bundle(this.prepareSkuList(bundle, displaySku));
-            this.setErrorCode(BaseResponse.No_EXCEPTION);
+            this.setErrorCode(BaseResponse.NO_EXCEPTION);
             this.setData(dFields);
 
         } catch (DataNotFoundException e) {

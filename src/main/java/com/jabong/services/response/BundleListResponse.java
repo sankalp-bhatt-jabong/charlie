@@ -28,7 +28,7 @@ public class BundleListResponse extends BaseResponse
                 throw new DataNotFoundException();
             }
             this.setData(fields);
-            this.setErrorCode(BaseResponse.No_EXCEPTION);
+            this.setErrorCode(BaseResponse.NO_EXCEPTION);
         } catch (DataNotFoundException e) {
             this.setData(e.getMessage());
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);
