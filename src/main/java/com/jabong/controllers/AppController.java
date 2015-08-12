@@ -28,7 +28,7 @@ public class AppController {
 			message = e.getMessage();
 		}
 		response.setData(message);
-		response.setStatus(false);
+		response.setErrorCode(BaseResponse.OTHER_EXCEPTION);
 		return response;
 	}*/
 }

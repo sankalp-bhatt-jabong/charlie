@@ -36,9 +36,6 @@ public class VoucherController extends AppController {
 	public @ResponseBody BaseResponse detail(@RequestParam(value = "id") int id)
 			throws Exception {
 		Voucher voucher = voucherDao.getDetailById(id);
-		if (voucher == null) {
-			throw new Exception("voucher Not Found.");
-		}
 		BaseResponse response = new VoucherResponse(voucher);
 		return response;
 	}
