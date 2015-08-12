@@ -3,11 +3,11 @@ package com.jabong.services.response;
 public class BaseResponse
 {
 
-    private int    errorCode;
+    private int errorCode;
     private Object data;
-    public static final int No_EXCEPTION = 0;
+    public static final int No_EXCEPTION             = 0;
     public static final int DATA_NOT_FOUND_EXCEPTION = 1;
-    public static final int OTHER_EXCEPTION = 2;
+    public static final int OTHER_EXCEPTION          = 2;
 
     public int getErrorCode()
     {

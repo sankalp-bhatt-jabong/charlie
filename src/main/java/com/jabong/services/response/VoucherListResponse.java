@@ -17,8 +17,8 @@ public class VoucherListResponse extends BaseResponse
 {
 
     public VoucherListResponse(List<Object> vouchers, VoucherDAO voucherDao)
-            throws Exception
-    {
+            throws Exception {
+
         HashMap<String, Object> promotionVoucherDetail = new HashMap<String, Object>();
         Iterator i = (Iterator) vouchers.iterator();
         try {
