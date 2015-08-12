@@ -9,11 +9,14 @@ public class BaseResponse
     public static final int DATA_NOT_FOUND_EXCEPTION = 1;
     public static final int OTHER_EXCEPTION          = 2;
 
-    public int getErrorCode()
+    public int getErrorcode()
     {
         return errorcode;
     }
-
+    public void setErrorcode(int errorcode)
+    {
+        this.errorcode = errorcode;
+    }
     public void setErrorCode(int errorcode)
     {
         this.errorcode = errorcode;
