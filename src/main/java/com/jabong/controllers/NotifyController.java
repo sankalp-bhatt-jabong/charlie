@@ -48,8 +48,8 @@ public class NotifyController extends AppController {
 	public @ResponseBody Object test() {
 		BaseResponse response = new BaseResponse();
 		//jabongBus.publish();
-		SeaLogger.getInstance()
-		.getLogger(NotifyController.class).debug("hey there");
+		//SeaLogger.getInstance()
+		//.getLogger(NotifyController.class).debug("hey there");
 		//bundleDao.getReverseSkuBundleMap();
 		return response;
 	}

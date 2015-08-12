@@ -82,7 +82,7 @@ public class BundleController extends AppController {
 	}
 	
 	@RequestMapping("/test")
-	public @ResponseBody Object test() {
+	public @ResponseBody Object test() throws Exception{
 		BaseResponse response = new BaseResponse();
 		//Logger.getLogger(BundleController.class).error("sfdsfsf");
 		//jabongBus.publish();

@@ -53,7 +53,7 @@
     </property>
     </bean>
      
-    <bean id="applicationContext" class="com.jabong.services.ApplicationContextProvider"/> 
+    <bean id="applicationContext" class="com.jabong.services.util.ApplicationContextProvider"/> 
      
     <tx:annotation-driven />
     <bean id="transactionManager"
