@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jabong.models">
+	<class name="VoucherSalesRule" table="sales_rule">
+		<id name="id" column="id_sales_rule">
+			<generator class="native" />
+		</id>
+		<property name="fkSalesRuleSet" column="fk_sales_rule_set" />
+		<property name="code" column="code" />
+		<property name="isActive" column="is_active" />
+		<property name="timesUsed" column="times_used" />
+		<property name="fromDate" column="from_date" />
+		<property name="toDate" column="to_date" />
+		<property name="usedDiscountAmount" column="used_discount_amount" />
+		<property name="createdAt" column="created_at" />
+		<property name="updatedAt" column="updated_at" />
+		<property name="fkCustomer" column="fk_customer" />
+		<property name="fkNewsletterSubscription" column="fk_newsletter_subscription" />
+		<property name="fkAclUser" column="fk_acl_user" />
+		<property name="discountAmount" column="discount_amount" />
+		<property name="modeOfDiscountAmount" column="mode_of_discount_amount" />
+		<property name="modeOfPaymentAmount" column="mode_of_payment_amount" />
+		<property name="isPublic" column="is_public" />
+		<property name="ip" column="ip" />
+		<property name="deviceId" column="device_id" />
+		
+	</class>
+</hibernate-mapping>

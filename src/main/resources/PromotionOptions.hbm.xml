@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jabong.models">
+	<class name="PromotionOptions" table="catalog_attribute_option_global_promotion">
+		<id name="id" column="id_catalog_attribute_option_global_promotion">
+			<generator class="native" />
+		</id>
+		<property name="name" column="name" />
+		<property name="name_en" column="name_en" />
+		<property name="position" column="position" />
+		<property name="is_default" column="is_default" />
+
+	</class>
+</hibernate-mapping>
