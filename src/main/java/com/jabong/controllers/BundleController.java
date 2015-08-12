@@ -61,9 +61,6 @@ public class BundleController extends AppController {
 		int bundleId = Integer.valueOf(id);
 		Boolean displaysku = (Integer.valueOf(displaySku) == 1);
 		Bundle bundle = bundleDao.getDetailById(bundleId, displaysku);
-		if (bundle == null) {
-			throw new Exception("Bundle Not Found.");
-		}
 		response = new BundleDetailResponse(bundle, displaysku);
 		return response;
 	}
