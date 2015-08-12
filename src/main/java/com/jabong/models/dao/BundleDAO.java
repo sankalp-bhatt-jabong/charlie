@@ -4,15 +4,18 @@ import java.util.List;
 
 import com.jabong.models.Bundle;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.transaction.annotation.Transactional;
 
 public class BundleDAO extends BaseDAO {
+	
 	private SessionFactory sessionFactory;
 
 	public BundleDAO(SessionFactory sessionFactory) {

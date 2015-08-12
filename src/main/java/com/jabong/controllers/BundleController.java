@@ -1,6 +1,7 @@
 package com.jabong.controllers;
 
 import java.util.*;
+
 import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.jabong.services.response.BundleDetailResponse;
 import com.jabong.services.response.BundleListResponse;
 import com.jabong.services.response.BundlesOfSkuResponse;
 import com.jabong.services.response.Sku2BundleMapResponse;
+import com.jabong.services.util.SeaLogger;
 
 /**
  * Handles requests for the application home page.
@@ -28,6 +30,8 @@ public class BundleController extends AppController {
 
 	@Autowired
 	private BundleDAO bundleDao;
+	
+	private SeaLogger log = SeaLogger.getInstance();
 
 	@RequestMapping("/list")
 	public @ResponseBody BaseResponse list() throws Exception {
@@ -71,4 +75,5 @@ public class BundleController extends AppController {
 		response = new Sku2BundleMapResponse(rowsList);
 		return response;
 	}
+	
 }
