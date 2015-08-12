@@ -29,7 +29,7 @@ public class Voucher {
 	private Float modeOfDiscountAmount;
 	private Float modeOfPaymentAmount;
 	private String ip;
-	private short showOnWebsite;
+	private Boolean showOnWebsite;
 	private short showSegmentedOnWebsite;
 	private Integer fkSystemDevice;
 	private String domain;
@@ -234,11 +234,11 @@ public class Voucher {
 		this.ip = ip;
 	}
 
-	public short getShowOnWebsite() {
+	public Boolean getShowOnWebsite() {
 		return showOnWebsite;
 	}
 
-	public void setShowOnWebsite(short showOnWebsite) {
+	public void setShowOnWebsite(Boolean showOnWebsite) {
 		this.showOnWebsite = showOnWebsite;
 	}
 

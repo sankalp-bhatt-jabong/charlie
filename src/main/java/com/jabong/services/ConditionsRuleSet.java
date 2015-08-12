@@ -1,109 +1,113 @@
 package com.jabong.services;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
+
+import com.jabong.services.util.StringUtil;
 
 public class ConditionsRuleSet {
 	private int subTotal;
-	private Map category;
+	private Map<?,?> category;
 	private String customer;
-	private Map paymentMethod;
-	private Map capOnDiscount;
-	private Map skuExclude;
+	private Map<?,?> paymentMethod;
+	private Map<?,?> capOnDiscount;
+	private Map<?,?> skuExclude;
 	private int discountedItem;
 	private int discounted;
-	private Map taggedItem;
-	private Map segmentedVoucher;
-	private Map bundle;
-	private Map brand;
-	private Map mobileVoucher;
-	private Map itemAttribute;
+	private Map<?,?> taggedItem;
+	private Map<?,?> segmentedVoucher;
+	private Map<?,?> bundle;
+	private Map<?,?> brand;
+	private Map<?,?> mobileVoucher;
+	private Map<?,?> itemAttribute;
 
 	public ConditionsRuleSet() {
 
 	}
 
 	public ConditionsRuleSet(String conditionsRuleSet) {
-		Map result = null;
+		Map<?,?> result = null;
 		SerializedPhpParser serializedPhpParser = new SerializedPhpParser(
 				conditionsRuleSet);
-		result = (Map) serializedPhpParser.parse();
+		result = (Map<?,?>) serializedPhpParser.parse();
 
 		if (result.containsKey("SegmentedVoucher")) {
-			Map sv = (Map) result.get("SegmentedVoucher");
+			Map<?,?> sv = (Map<?,?>) result.get("SegmentedVoucher");
 			this.setSegmentedVoucher(sv);
 		}
 
 		if (result.containsKey("Category")) {
-			this.setCategory((Map) result.get("Category"));
+			this.setCategory((Map<?,?>) result.get("Category"));
 		}
 
 		if (result.containsKey("Brand")) {
-			this.setBrand((Map) result.get("Brand"));
+			this.setBrand((Map<?,?>) result.get("Brand"));
 		}
 		if (result.containsKey("Customer")) {
 			this.setCustomer((String) result.get("Customer"));
 		}
 
 		if (result.containsKey("Paymentmethod")) {
-			if (result.get("Paymentmethod").equals(false)
-					|| result.get("Paymentmethod").equals("")
-					|| result.get("Paymentmethod").equals("0")) {
+			Object attributeValue = result.get("Paymentmethod");
+			if (StringUtil.empty(attributeValue)) {
 				this.setPaymentMethod(Collections.emptyMap());
 			} else {
-				this.setPaymentMethod((Map) result.get("Paymentmethod"));
+				this.setPaymentMethod((Map<?,?>) attributeValue);
 			}
 		}
 
 		if (result.containsKey("SkuExclude")) {
-			this.setSkuExclude((Map) result.get("SkuExclude"));
+			this.setSkuExclude((Map<?,?>) result.get("SkuExclude"));
 		}
 
 		if (result.containsKey("Bundle")) {
-			if (result.get("Bundle").equals(false)
-					|| result.get("Bundle").equals("0")
-					|| result.get("Bundle").equals("")) {
+			Object attributeValue = result.get("Bundle");
+			if (StringUtil.empty(attributeValue)) {
 				this.setBundle(Collections.emptyMap());
-			} else {
-				this.setBundle((Map) result.get("Bundle"));
+			} else if (attributeValue.equals("1")) {
+				HashMap<String, String> bundle = new HashMap<String, String>();
+				bundle.put("state", "exclude");
+				this.setBundle(bundle);
+			}
+			else {
+				this.setBundle((Map<?,?>) attributeValue);
 			}
 		}
 
 		if (result.containsKey("Discounted")) {
 			int value;
-			if (result.get("Discounted").equals(false)
-					|| result.get("Discounted").equals("0")
-					|| result.get("Discounted").equals("")) {
+			Object attributeValue = result.get("Discounted");
+			if (StringUtil.empty(attributeValue)) {
 				value = 0;
 			} else {
-				value = Integer.parseInt((String) result.get("Discounted"));
+				value = Integer.parseInt((String) attributeValue);
 			}
 
 			this.setDiscounted(value);
 		}
 
 		if (result.containsKey("CapOnDiscount")) {
-			if (result.get("CapOnDiscount").equals(false)
-					|| result.get("CapOnDiscount").equals("")
-					|| result.get("CapOnDiscount").equals("0")) {
+			Object attributeValue = result.get("CapOnDiscount");
+			if (StringUtil.empty(attributeValue)) {
 				this.setCapOnDiscount(Collections.emptyMap());
 			} else {
-				this.setCapOnDiscount((Map) result.get("CapOnDiscount"));
+				this.setCapOnDiscount((Map<?,?>) attributeValue);
 			}
 		}
 
 		if (result.containsKey("ItemAttribute")) {
-			if (result.get("ItemAttribute").equals(false)
-					|| result.get("ItemAttribute").equals("")
-					|| result.get("ItemAttribute").equals("0")) {
+
+			Object attributeValue = result.get("ItemAttribute");
+			if (StringUtil.empty(attributeValue)) {
 				this.setItemAttribute(Collections.emptyMap());
 			} else {
-				this.setItemAttribute((Map) result.get("ItemAttribute"));
+				this.setItemAttribute((Map<?,?>) attributeValue);
 			}
 		}
 
 		if (result.containsKey("MobileVoucher")) {
-			Map mv = (Map) result.get("MobileVoucher");
+			Map<String,Integer> mv = (Map)result.get("MobileVoucher");
 			if (mv.containsKey("mobilevoucher_app")
 					|| mv.containsKey("mobilevoucher_site")) {
 				if (mv.containsKey("mobilevoucher_app")) {
@@ -129,12 +133,11 @@ public class ConditionsRuleSet {
 
 		if (result.containsKey("DiscountedItem")) {
 			int value;
-			if (result.get("DiscountedItem").equals(false)
-					|| result.get("DiscountedItem").equals("")
-					|| result.get("DiscountedItem").equals("0")) {
+			Object attributeValue = result.get("DiscountedItem");
+			if (StringUtil.empty(attributeValue)) {
 				value = 0;
 			} else {
-				value = Integer.parseInt((String) result.get("DiscountedItem"));
+				value = Integer.parseInt((String) attributeValue);
 			}
 
 			this.setDiscountedItem(value);
@@ -142,13 +145,13 @@ public class ConditionsRuleSet {
 
 		if (result.containsKey("Subtotal")) {
 			int value;
-			if (result.get("Subtotal").equals(false)
-					|| result.get("Subtotal").equals("0")
-					|| result.get("Subtotal").equals("")) {
+			Object attributeValue = result.get("Subtotal");
+			if (StringUtil.empty(attributeValue)) {
 				value = 0;
 			} else {
-				value = Integer.parseInt((String) result.get("Subtotal"));
+				value = Integer.parseInt((String) attributeValue);
 			}
+
 			this.setSubTotal(value);
 		}
 	}
@@ -161,11 +164,11 @@ public class ConditionsRuleSet {
 		this.subTotal = subTotal;
 	}
 
-	public Map getCategory() {
+	public Map<?,?> getCategory() {
 		return category;
 	}
 
-	public void setCategory(Map category) {
+	public void setCategory(Map<?,?> category) {
 		this.category = category;
 	}
 
@@ -177,27 +180,27 @@ public class ConditionsRuleSet {
 		this.customer = customer;
 	}
 
-	public Map getPaymentMethod() {
+	public Map<?,?> getPaymentMethod() {
 		return paymentMethod;
 	}
 
-	public void setPaymentMethod(Map paymentMethod) {
+	public void setPaymentMethod(Map<?,?> paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public Map getCapOnDiscount() {
+	public Map<?,?> getCapOnDiscount() {
 		return capOnDiscount;
 	}
 
-	public void setCapOnDiscount(Map capOnDiscount) {
+	public void setCapOnDiscount(Map<?,?> capOnDiscount) {
 		this.capOnDiscount = capOnDiscount;
 	}
 
-	public Map getSkuExclude() {
+	public Map<?,?> getSkuExclude() {
 		return skuExclude;
 	}
 
-	public void setSkuExclude(Map skuExclude) {
+	public void setSkuExclude(Map<?,?> skuExclude) {
 		this.skuExclude = skuExclude;
 	}
 
@@ -217,52 +220,53 @@ public class ConditionsRuleSet {
 		this.discounted = discounted;
 	}
 
-	public Map getTaggedItem() {
+	public Map<?,?> getTaggedItem() {
 		return taggedItem;
 	}
 
-	public void setTaggedItem(Map taggedItem) {
+	public void setTaggedItem(Map<?,?> taggedItem) {
 		this.taggedItem = taggedItem;
 	}
 
-	public Map getSegmentedVoucher() {
+	public Map<?,?> getSegmentedVoucher() {
 		return segmentedVoucher;
 	}
 
-	public void setSegmentedVoucher(Map segmentedVoucher) {
+	public void setSegmentedVoucher(Map<?,?> segmentedVoucher) {
 		this.segmentedVoucher = segmentedVoucher;
 	}
 
-	public Map getBundle() {
+	public Map<?,?> getBundle() {
 		return bundle;
 	}
 
-	public void setBundle(Map bundle) {
+	public void setBundle(Map<?,?> bundle) {
 		this.bundle = bundle;
 	}
 
-	public Map getMobileVoucher() {
+	public Map<?,?> getMobileVoucher() {
 		return mobileVoucher;
 	}
 
-	public void setMobileVoucher(Map mobileVoucher) {
+	public void setMobileVoucher(Map<?,?> mobileVoucher) {
 		this.mobileVoucher = mobileVoucher;
 	}
 
-	public Map getBrand() {
+	public Map<?,?> getBrand() {
 		return brand;
 	}
 
-	public void setBrand(Map brand) {
+	public void setBrand(Map<?,?> brand) {
 		this.brand = brand;
 	}
 
-	public Map getItemAttribute() {
+	public Map<?,?> getItemAttribute() {
 		return itemAttribute;
 	}
 
-	public void setItemAttribute(Map itemAttribute) {
+	public void setItemAttribute(Map<?,?> itemAttribute) {
 		this.itemAttribute = itemAttribute;
 	}
+
 
 }
