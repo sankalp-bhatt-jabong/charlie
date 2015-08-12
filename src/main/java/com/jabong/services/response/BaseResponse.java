@@ -1,24 +1,32 @@
 package com.jabong.services.response;
 
-public class BaseResponse {
+public class BaseResponse
+{
 
-	private Boolean status;
-	private Object data;
+    private int    errorCode;
+    private Object data;
+    public static final int No_EXCEPTION = 0;
+    public static final int DATA_NOT_FOUND_EXCEPTION = 1;
+    public static final int OTHER_EXCEPTION = 2;
 
-	public Boolean getStatus() {
-		return status;
-	}
+    public int getErrorCode()
+    {
+        return errorCode;
+    }
 
-	public void setStatus(Boolean status) {
-		this.status = status;
-	}
+    public void setErrorCode(int errorCode)
+    {
+        this.errorCode = errorCode;
+    }
 
-	public Object getData() {
-		return data;
-	}
+    public Object getData()
+    {
+        return data;
+    }
 
-	public void setData(Object data) {
-		this.data = data;
-	}
+    public void setData(Object data)
+    {
+        this.data = data;
+    }
 
 }
