@@ -1,5 +1,7 @@
 package com.jabong.services.response;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -18,8 +20,8 @@ public class VoucherListResponse extends BaseResponse
 
     public VoucherListResponse(List<Object> vouchers, VoucherDAO voucherDao)
     {
-
-        HashMap<String, Object> promotionVoucherDetail = new HashMap<String, Object>();
+        List<Map> promoVouchersList = new ArrayList<Map>();
+        HashMap<String, List<Object>> promotionVoucherDetail = new HashMap<String, List<Object>>();
         Iterator i = (Iterator) vouchers.iterator();
         try {
             while (i.hasNext()) {
@@ -51,18 +53,26 @@ public class VoucherListResponse extends BaseResponse
                 fields.setTo_date(toDate);
                 int key1 = Integer.parseInt((String) taggedItem.get("tagvalue"));
                 String key = voucherDao.mapToTagValue(key1);
-                promotionVoucherDetail.put(key, fields);
-
+                if (promotionVoucherDetail.get(key) == null) {
+                    List<Object> promoVouchers = new ArrayList<Object>();
+                    promoVouchers.add(fields);
+                    promotionVoucherDetail.put(key, promoVouchers);
+                    continue;    
+                } 
+                List<Object> promoVouchers = promotionVoucherDetail.get(key);
+                promoVouchers.add(fields);
+                promotionVoucherDetail.put(key, promoVouchers);
             }
-
+            
             if (promotionVoucherDetail.isEmpty()) {
                 throw new DataNotFoundException();
             }
-            this.setData(promotionVoucherDetail);
+            promoVouchersList.add(promotionVoucherDetail);
+            this.setData(promoVouchersList);
             this.setErrorCode(BaseResponse.NO_EXCEPTION);
 
         } catch (DataNotFoundException e) {
-            this.setData(e.getMessage());
+            this.setData(Collections.EMPTY_LIST);
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);
         } catch (Exception e) {
             this.setData(e.getMessage());

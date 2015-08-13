@@ -1,6 +1,7 @@
 package com.jabong.services.response;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -30,7 +31,7 @@ public class BundleListResponse extends BaseResponse
             this.setData(fields);
             this.setErrorCode(BaseResponse.NO_EXCEPTION);
         } catch (DataNotFoundException e) {
-            this.setData(e.getMessage());
+            this.setData(Collections.EMPTY_LIST);
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);
         } catch (Exception e) {
             this.setData(e.getMessage());
