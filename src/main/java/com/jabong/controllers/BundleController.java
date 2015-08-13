@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jabong.controllers.AppController;
 import com.jabong.models.Bundle;
 import com.jabong.models.dao.BundleDAO;
+import com.jabong.services.notification.JabongBusMessage;
 import com.jabong.services.response.BaseResponse;
 import com.jabong.services.response.BundleDetailResponse;
 import com.jabong.services.response.BundleListResponse;
@@ -85,8 +86,10 @@ public class BundleController extends AppController {
     @RequestMapping("/test")
     public @ResponseBody Object test() throws Exception
     {
-        String url = "http://bob.indfas-19445.qw/catalog-ext/webservice/update-price";
-        String stringData = "{ \r\n\"context\" :  { \r\n\t\"uid\" : \"33er33\",   \r\n    \"email\" : \"tutu@jabong.com\",   \r\n    \"old_price_consistency\" : 0,\r\n    \"partial_execution_allowed\" : 0,\r\n    \"chunk_size\":3,\r\n    \"special_from_date\":\"2014-12-22\", \r\n    \"special_to_date\":\"2015-10-10\" \r\n}, \r\n\"columns\":[\r\n\t\"id_catalog_simple\",\r\n    \"special_price\"\r\n    \r\n], \r\n\"data\":[ \r\n[1, 300.00],\r\n[2, 300.00],\r\n[148, 1000.00]\r\n] \r\n}";
+        String url = "http://43.252.89.66:8087/work/pricing";
+        
+        JabongBusMessage message =  new JabongBusMessage();
+        
         DefaultHttpClient httpclient = new DefaultHttpClient();
         HttpPost httpost = new HttpPost(url);
         httpost.setEntity(new StringEntity(stringData));

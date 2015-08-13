@@ -2,34 +2,38 @@ package com.jabong.services.notification;
 
 public class JabongBusMessage
 {
-    private String message_id;
+    private String id;
     private final String publisher_name = "catalyst";
     private String routing_key;
     private long timestamp;
     private String type;
-    private String type_of_change;
-    private Object promotions;
+    private ChangeType type_of_change;
+    private Object data;
+    
+    public enum ChangeType {
+        create, update, delete
+    }
     
     public JabongBusMessage() {
-        getTimestamp();
-        setMessageId();
+        setTimestamp();
+        setid();
     }
     
-    public String getMessageId() {
-        return message_id;
+    public String getid() {
+        return id;
     }
 
-    public void setMessageId() {
+    public void setid() {
         //@todo: Implement message ID generation.
         String id = "asdd21331";
-        this.message_id = id;
+        this.id = id;
     }
 
-    public String getRoutingKey() {
+    public String getRouting_key() {
         return routing_key;
     }
 
-    public void setRoutingKey(String routing_key) {
+    public void setRouting_key(String routing_key) {
         this.routing_key = routing_key;
     }
     
@@ -38,7 +42,7 @@ public class JabongBusMessage
     }
 
     public void setTimestamp() {
-        long unixTime = System.currentTimeMillis() / 1000L;
+        long unixTime = System.currentTimeMillis();
         this.timestamp = unixTime;
     }
     
@@ -50,23 +54,23 @@ public class JabongBusMessage
         this.type = type;
     }
 
-    public String getTypeOfChange() {
+    public ChangeType getType_of_change() {
         return type_of_change;
     }
 
-    public void setTypeOfChange(String type_of_change) {
+    public void setType_of_change(ChangeType type_of_change) {
         this.type_of_change = type_of_change;
     }
 
     public Object getData() {
-        return promotions;
+        return data;
     }
 
-    public void setData(Object promotions) {
-        this.promotions = promotions;
+    public void setData(Object data) {
+        this.data = data;
     }
 
-    public String getPublisherName() {
+    public String getPublisher_name() {
         return publisher_name;
     }
  
