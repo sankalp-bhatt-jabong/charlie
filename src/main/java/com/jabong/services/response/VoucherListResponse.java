@@ -17,7 +17,7 @@ public class VoucherListResponse extends BaseResponse
 {
 
     public VoucherListResponse(List<Object> vouchers, VoucherDAO voucherDao)
-            throws Exception {
+    {
 
         HashMap<String, Object> promotionVoucherDetail = new HashMap<String, Object>();
         Iterator i = (Iterator) vouchers.iterator();
@@ -63,7 +63,7 @@ public class VoucherListResponse extends BaseResponse
             this.setData(e.getMessage());
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);
         } catch (Exception e) {
-            this.setData(promotionVoucherDetail);
+            this.setData(e.getMessage());
             this.setErrorCode(BaseResponse.OTHER_EXCEPTION);
         }
     }
