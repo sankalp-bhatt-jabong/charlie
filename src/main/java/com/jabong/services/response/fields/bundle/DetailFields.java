@@ -20,7 +20,6 @@ public class DetailFields {
 	private Map messages;
 	private ActionSerializedFields action_serialized;
 	private List<SetSummaryFields> sets;
-	private List<String> skus_in_bundle;
 
 	public List<?> getFreebie_products() {
 		return freebie_products;
@@ -146,14 +145,6 @@ public class DetailFields {
 
 	public void setSets(List<SetSummaryFields> sets) {
 		this.sets = sets;
-	}
-
-	public List<String> getSkus_in_bundle() {
-		return skus_in_bundle;
-	}
-
-	public void setSkus_in_bundle(List<String> skus_in_bundle) {
-		this.skus_in_bundle = skus_in_bundle;
 	}
 
 }

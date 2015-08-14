@@ -17,7 +17,7 @@ import com.jabong.services.response.fields.bundle.SetSummaryFields;
 public class BundleDetailResponse extends BaseResponse
 {
 
-    public BundleDetailResponse(Bundle bundle, Boolean displaySku)
+    public BundleDetailResponse(Bundle bundle)
     {
         try {
             if (bundle == null) {
@@ -39,7 +39,6 @@ public class BundleDetailResponse extends BaseResponse
             dFields.setMessages(this.getBundleMessages(bundle));
             dFields.setAction_serialized(bundle.getActionSerialized());
             dFields.setSets(this.prepareSetList(bundle));
-            dFields.setSkus_in_bundle(this.prepareSkuList(bundle, displaySku));
             this.setErrorCode(BaseResponse.NO_EXCEPTION);
             this.setData(dFields);
 
@@ -71,25 +70,6 @@ public class BundleDetailResponse extends BaseResponse
         return messages;
     }
 
-    private ArrayList<String> prepareSkuList(Bundle bundle,  Boolean displaySku)
-    {
-        ArrayList<String> skuList = new ArrayList<String>();
-        if (!displaySku) {
-            return skuList;
-        }
-        Set<BundleSet> sets = bundle.getBundleSets();
-        Iterator setIterator = sets.iterator();
-        while (setIterator.hasNext()) {
-            BundleSet bundleset = (BundleSet) setIterator.next();
-            Set<BundleSetOption> setOptions = bundleset.getBundleSetOptions();
-            Iterator optionItr = setOptions.iterator();
-            while (optionItr.hasNext()) {
-                BundleSetOption skuD = (BundleSetOption) optionItr.next();
-                skuList.add(skuD.getSku());
-            }
-        }
-        return skuList;
-    }
 
     private ArrayList<SetSummaryFields> prepareSetList(Bundle bundle)
     {
