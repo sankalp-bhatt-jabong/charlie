@@ -75,5 +75,9 @@
 	<bean id="bundleNotify" class="com.jabong.services.notification.BundleNotify">
 		<property name="bundleDao" ref="bundleDao" />
 	</bean>
+	
+	<bean id="voucherNotify" class="com.jabong.services.notification.VoucherNotify">
+		<property name="voucherDao" ref="voucherDao" />
+	</bean>
 	 	
 </beans>

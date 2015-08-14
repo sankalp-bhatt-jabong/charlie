@@ -93,10 +93,11 @@
 		    <version>1.2.17</version>
 	    </dependency>
 		<dependency>
-			<groupId>p6spy</groupId>
-			<artifactId>p6spy</artifactId>
-			<version>1.3</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.1</version>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>charlie</finalName>

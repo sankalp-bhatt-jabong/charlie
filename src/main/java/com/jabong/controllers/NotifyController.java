@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jabong.controllers.AppController;
 import com.jabong.models.Bundle;
 import com.jabong.models.dao.BundleDAO;
-import com.jabong.services.JabongBus;
 import com.jabong.services.notification.BundleNotify;
 import com.jabong.services.response.BaseResponse;
 import com.jabong.services.response.BundleDetailResponse;
@@ -31,13 +30,10 @@ public class NotifyController extends AppController {
 	@Autowired
 	private HttpServletRequest request;
 	
-	@Autowired
-	private BundleNotify bundleNotify;
 
 	@RequestMapping("/bundle")
 	public @ResponseBody Object bundle() {
 		
-		 bundleNotify.activeList();
 		return "";
 	}
 	
