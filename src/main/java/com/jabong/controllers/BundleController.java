@@ -1,17 +1,13 @@
 package com.jabong.controllers;
 
 import java.util.*;
-
 import org.apache.commons.lang3.StringUtils;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.jabong.controllers.AppController;
 import com.jabong.models.Bundle;
 import com.jabong.models.dao.BundleDAO;
@@ -78,10 +74,9 @@ public class BundleController extends AppController {
 		return response;
 	}
 	
-	@RequestMapping("/bundle-sku-map")
+    @RequestMapping("/bundle-sku-map")
     public @ResponseBody Object bundleSkuMap(@RequestParam(value = "id") int id) throws Exception{
         BaseResponse response = new BaseResponse();
-       // String id = request.getParameter("id");
         List<?> skuList = bundleDao.getBundleToSkuList(id);
         response = new BundleToSkuResponse(id, skuList);
         return response;
