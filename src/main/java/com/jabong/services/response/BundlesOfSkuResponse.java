@@ -1,5 +1,6 @@
 package com.jabong.services.response;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.jabong.exception.DataNotFoundException;
@@ -17,7 +18,7 @@ public class BundlesOfSkuResponse extends BaseResponse
             this.setData(bundleIds);
             this.setErrorCode(BaseResponse.NO_EXCEPTION);
         } catch (DataNotFoundException e) {
-            this.setData(e.getMessage());
+            this.setData(Collections.EMPTY_LIST);
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);
         } catch (Exception e) {
             this.setData(e.getMessage());

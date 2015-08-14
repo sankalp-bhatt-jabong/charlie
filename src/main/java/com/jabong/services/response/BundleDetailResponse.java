@@ -1,6 +1,7 @@
 package com.jabong.services.response;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -43,7 +44,7 @@ public class BundleDetailResponse extends BaseResponse
             this.setData(dFields);
 
         } catch (DataNotFoundException e) {
-            this.setData(e.getMessage());
+            this.setData(Collections.EMPTY_MAP);
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);
 
         } catch (Exception e) {

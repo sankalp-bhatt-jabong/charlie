@@ -1,6 +1,7 @@
 package com.jabong.services.response;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Sku2BundleMapResponse extends BaseResponse
             this.setData(response);
             this.setErrorCode(BaseResponse.NO_EXCEPTION);
         } catch (DataNotFoundException e) {
-            this.setData(e.getMessage());
+            this.setData(Collections.EMPTY_MAP);
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);
         } catch (Exception e) {
             this.setData(e.getMessage());

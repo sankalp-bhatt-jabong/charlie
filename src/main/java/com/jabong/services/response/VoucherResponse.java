@@ -1,6 +1,7 @@
 package com.jabong.services.response;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
 
 import com.jabong.services.ConditionsRuleSet;
 import com.jabong.exception.DataNotFoundException;
@@ -29,7 +30,7 @@ public class VoucherResponse extends BaseResponse
             this.setData(vFields);
             this.setErrorCode(BaseResponse.NO_EXCEPTION);
         } catch (DataNotFoundException e) {
-            this.setData(e.getMessage());
+            this.setData(Collections.EMPTY_MAP);
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);
 
         } catch (Exception e) {

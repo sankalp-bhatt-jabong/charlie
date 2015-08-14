@@ -68,4 +68,14 @@
 		AND to_date >= :to_date
 		]]>
 	</sql-query>
+	<sql-query name="bundle2SkuMappingById">
+		<![CDATA[
+		SELECT sku
+		FROM sku_bundle_sets
+		INNER JOIN sku_bundle_sets_options
+		ON sku_bundle_sets.id_sku_bundle_sets = 
+		sku_bundle_sets_options.fk_sku_bundle_sets 
+		WHERE sku_bundle_sets.fk_sku_bundle  = :id
+		]]>
+</sql-query>
 </hibernate-mapping>
