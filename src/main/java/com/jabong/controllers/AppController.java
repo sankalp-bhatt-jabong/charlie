@@ -14,7 +14,7 @@ public class AppController {
 	public void fallbackMethod() throws Exception {
 		throw new Exception("Page not found");
 	}
-	/*
+	
 	@ExceptionHandler(Exception.class)
 	public @ResponseBody BaseResponse exception(Exception e) {
 		
@@ -30,5 +30,5 @@ public class AppController {
 		response.setData(message);
 		response.setErrorCode(BaseResponse.OTHER_EXCEPTION);
 		return response;
-	}*/
+	}
 }
