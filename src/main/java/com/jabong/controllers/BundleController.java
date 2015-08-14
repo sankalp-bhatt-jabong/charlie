@@ -83,29 +83,6 @@ public class BundleController extends AppController {
 		response = new Sku2BundleMapResponse(rowsList);
 		return response;
 	}
-
-    @RequestMapping("/test")
-    public @ResponseBody Object test() throws Exception
-    {
-        String url = "http://43.252.89.66:8087/work/pricing";
-        
-        JabongBusMessage message =  new JabongBusMessage();
-        
-        DefaultHttpClient httpclient = new DefaultHttpClient();
-        HttpPost httpost = new HttpPost(url);
-        httpost.setEntity(new StringEntity(stringData));
-        HttpResponse response = httpclient.execute(httpost);
-        if (response.getStatusLine().getStatusCode() != 200) {
-           //throw an exception     
-        }
-        HttpEntity entity = response.getEntity();
-        if (entity == null) {
-            //throw an exception
-        }
-        String responseData = EntityUtils.toString(entity);
-        //@todo check if response is success
-        return response.getStatusLine().getStatusCode();
-    }
 	
     @RequestMapping("/bundle-sku-list")
     public @ResponseBody Object bundleSkulist() throws Exception
