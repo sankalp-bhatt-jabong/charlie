@@ -1,12 +1,12 @@
 package com.jabong.controllers;
 
 import java.util.*;
-
 import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.jabong.controllers.AppController;
 import com.jabong.models.Bundle;
@@ -14,6 +14,7 @@ import com.jabong.models.dao.BundleDAO;
 import com.jabong.services.response.BaseResponse;
 import com.jabong.services.response.BundleDetailResponse;
 import com.jabong.services.response.BundleListResponse;
+import com.jabong.services.response.BundleToSkuResponse;
 import com.jabong.services.response.BundlesOfSkuResponse;
 import com.jabong.services.response.Sku2BundleMapResponse;
 import com.jabong.services.util.SeaLogger;
@@ -72,5 +73,15 @@ public class BundleController extends AppController {
 		response = new Sku2BundleMapResponse(rowsList);
 		return response;
 	}
+	
+    @RequestMapping("/bundle-sku-list")
+    public @ResponseBody Object bundleSkulist() throws Exception
+    {
+        BaseResponse response = new BaseResponse();
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<?> skuList = bundleDao.getBundleToSkuList(id);
+        response = new BundleToSkuResponse(id, skuList);
+        return response;
+    }
 	
 }
