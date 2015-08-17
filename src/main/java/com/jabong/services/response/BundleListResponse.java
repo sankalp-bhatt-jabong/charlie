@@ -23,6 +23,7 @@ public class BundleListResponse extends BaseResponse
                 SummaryFields sFields = new SummaryFields();
                 sFields.setId(bundle.getId());
                 sFields.setDisplay_name(bundle.getDisplayName());
+                sFields.setName(bundle.getName());
                 fields.add(sFields);
             }
             if (fields.isEmpty()) {
