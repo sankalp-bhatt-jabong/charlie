@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jabong</groupId>
-	<artifactId>charlie</artifactId>
-	<name>charlie</name>
+	<artifactId>catalyst</artifactId>
+	<name>catalyst</name>
 	<packaging>war</packaging>
-	<version>0.1.0</version>
+	<version>0.0.1</version>
 
 	<properties>
 		<java-version>1.7</java-version>
@@ -88,10 +88,10 @@
 		</dependency>
 		<!-- Logging Utility -->
 		<dependency>
-		    <groupId>log4j</groupId>
-		    <artifactId>log4j</artifactId>
-		    <version>1.2.17</version>
-	    </dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -100,7 +100,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>charlie</finalName>
+		<finalName>catalyst</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
