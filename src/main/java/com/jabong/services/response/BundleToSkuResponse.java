@@ -11,7 +11,7 @@ public class BundleToSkuResponse extends BaseResponse
         BundleToSkuFields fields = new BundleToSkuFields();
         try {
             fields.setId(id);
-            fields.setSkuList(skus);
+            fields.setSku_list(skus);
             if (skus.isEmpty()) {
                 throw new DataNotFoundException();
             }

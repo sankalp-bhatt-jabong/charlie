@@ -84,7 +84,7 @@ public class BundleController extends AppController {
 		return response;
 	}
 	
-    @RequestMapping("/bundle-sku-list")
+    @RequestMapping("/sku_list")
     public @ResponseBody Object bundleSkulist() throws Exception
     {
         BaseResponse response = new BaseResponse();

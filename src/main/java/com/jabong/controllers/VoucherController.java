@@ -16,7 +16,7 @@ import com.jabong.controllers.AppController;
 import com.jabong.models.Voucher;
 import com.jabong.models.dao.VoucherDAO;
 import com.jabong.services.response.BaseResponse;
-import com.jabong.services.response.VoucherListResponse;
+import com.jabong.services.response.VoucherPromotionsResponse;
 import com.jabong.services.response.VoucherResponse;
 
 /**
@@ -40,10 +40,10 @@ public class VoucherController extends AppController {
 		return response;
 	}
 
-	@RequestMapping("/list")
+	@RequestMapping("/promotions")
 	public @ResponseBody BaseResponse list() throws Exception {
 		List<Object> vouchers = voucherDao.getActiveList();
-		BaseResponse response = new VoucherListResponse(vouchers, voucherDao);
+		BaseResponse response = new VoucherPromotionsResponse(vouchers, voucherDao);
 		return response;
 	}
 
