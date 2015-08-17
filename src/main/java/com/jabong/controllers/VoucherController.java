@@ -41,7 +41,7 @@ public class VoucherController extends AppController {
 	}
 
 	@RequestMapping("/promotions")
-	public @ResponseBody BaseResponse list() throws Exception {
+	public @ResponseBody BaseResponse promotions() throws Exception {
 		List<Object> vouchers = voucherDao.getActiveList();
 		BaseResponse response = new VoucherPromotionsResponse(vouchers, voucherDao);
 		return response;

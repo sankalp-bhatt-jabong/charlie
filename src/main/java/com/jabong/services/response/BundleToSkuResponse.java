@@ -6,7 +6,7 @@ import com.jabong.services.response.fields.bundle.BundleToSkuFields;
 
 public class BundleToSkuResponse extends BaseResponse
 {
-    public BundleToSkuResponse(Integer id, List<?> skus)
+    public BundleToSkuResponse(Integer id, List<String> skus)
     {
         BundleToSkuFields fields = new BundleToSkuFields();
         try {

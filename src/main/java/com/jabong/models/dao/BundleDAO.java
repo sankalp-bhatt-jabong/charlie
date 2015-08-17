@@ -79,9 +79,9 @@ public class BundleDAO extends BaseDAO {
 	}
 	
     @Transactional
-    public List<?> getBundleToSkuList(Integer id) {
+    public List<String> getBundleToSkuList(Integer id) {
         Session session = sessionFactory.getCurrentSession();
-        List<?> res = session.getNamedQuery("bundle2SkuMappingById")
+        List<String> res = session.getNamedQuery("bundle2SkuMappingById")
                 .setInteger("id", id).list();
         return res;
     }
