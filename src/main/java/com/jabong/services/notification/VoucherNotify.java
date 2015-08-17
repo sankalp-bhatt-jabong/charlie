@@ -2,6 +2,7 @@ package com.jabong.services.notification;
 
 import java.util.List;
 
+
 import com.jabong.models.Bundle;
 import com.jabong.models.Voucher;
 import com.jabong.models.dao.BundleDAO;
@@ -9,7 +10,7 @@ import com.jabong.models.dao.VoucherDAO;
 import com.jabong.services.notification.JabongBusMessage.ChangeType;
 import com.jabong.services.response.BaseResponse;
 import com.jabong.services.response.BundleListResponse;
-import com.jabong.services.response.VoucherListResponse;
+import com.jabong.services.response.VoucherPromotionsResponse;
 import com.jabong.services.response.VoucherResponse;
 
 public class VoucherNotify extends BaseNotify
@@ -61,7 +62,7 @@ public class VoucherNotify extends BaseNotify
             throws Exception
     {
         List<Object> vouchers = voucherDao.getActiveList();
-        BaseResponse response = new VoucherListResponse(
+        BaseResponse response = new VoucherPromotionsResponse(
             vouchers, this.voucherDao
         );
         int errorCode = response.getErrorcode();

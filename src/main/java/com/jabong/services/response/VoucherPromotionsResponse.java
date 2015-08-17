@@ -15,12 +15,11 @@ import com.jabong.services.response.fields.voucher.PromotionVoucherFields;
 import com.jabong.services.util.DateUtil;
 import com.jabong.services.util.StringUtil;
 
-public class VoucherListResponse extends BaseResponse
+public class VoucherPromotionsResponse extends BaseResponse
 {
 
-    public VoucherListResponse(List<Object> vouchers, VoucherDAO voucherDao)
+    public VoucherPromotionsResponse(List<Object> vouchers, VoucherDAO voucherDao)
     {
-        List<Map> promoVouchersList = new ArrayList<Map>();
         HashMap<String, List<Object>> promotionVoucherDetail = new HashMap<String, List<Object>>();
         Iterator i = (Iterator) vouchers.iterator();
         try {
@@ -67,12 +66,11 @@ public class VoucherListResponse extends BaseResponse
             if (promotionVoucherDetail.isEmpty()) {
                 throw new DataNotFoundException();
             }
-            promoVouchersList.add(promotionVoucherDetail);
-            this.setData(promoVouchersList);
+            this.setData(promotionVoucherDetail);
             this.setErrorCode(BaseResponse.NO_EXCEPTION);
 
         } catch (DataNotFoundException e) {
-            this.setData(Collections.EMPTY_LIST);
+            this.setData(Collections.EMPTY_MAP);
             this.setErrorCode(BaseResponse.DATA_NOT_FOUND_EXCEPTION);
         } catch (Exception e) {
             this.setData(e.getMessage());

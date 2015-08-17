@@ -6,12 +6,12 @@ import com.jabong.services.response.fields.bundle.BundleToSkuFields;
 
 public class BundleToSkuResponse extends BaseResponse
 {
-    public BundleToSkuResponse(Integer id, List<?> skus)
+    public BundleToSkuResponse(Integer id, List<String> skus)
     {
         BundleToSkuFields fields = new BundleToSkuFields();
         try {
             fields.setId(id);
-            fields.setSkuList(skus);
+            fields.setSku_list(skus);
             if (skus.isEmpty()) {
                 throw new DataNotFoundException();
             }

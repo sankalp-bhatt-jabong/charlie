@@ -79,12 +79,12 @@ public class BundleController extends AppController {
 		return response;
 	}
 	
-    @RequestMapping("/bundle-sku-list")
-    public @ResponseBody Object bundleSkulist() throws Exception
+    @RequestMapping("/sku_list")
+    public @ResponseBody Object skuList() throws Exception
     {
         BaseResponse response = new BaseResponse();
         int id = Integer.parseInt(request.getParameter("id"));
-        List<?> skuList = bundleDao.getBundleToSkuList(id);
+        List<String> skuList = bundleDao.getBundleToSkuList(id);
         response = new BundleToSkuResponse(id, skuList);
         return response;
     }
