@@ -62,17 +62,12 @@ public class BundleController extends AppController {
 	public @ResponseBody Object detail() throws Exception {
 		BaseResponse response = new BaseResponse();
 		String id = request.getParameter("id");
-		String displaySku = request.getParameter("displaySku");
 		if (StringUtils.isBlank(id)) {
 			throw new Exception("Please Supply valid parameter value.");
 		}
-		if (StringUtils.isBlank(displaySku)) {
-			displaySku = "0";
-		}
 		int bundleId = Integer.valueOf(id);
-		Boolean displaysku = (Integer.valueOf(displaySku) == 1);
-		Bundle bundle = bundleDao.getDetailById(bundleId, displaysku);
-		response = new BundleDetailResponse(bundle, displaysku);
+		Bundle bundle = bundleDao.getDetailById(bundleId);
+		response = new BundleDetailResponse(bundle);
 		return response;
 	}
 
